@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Real Estate Math — Realty ONE Group Results</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+body { font-family: 'DM Sans', sans-serif; background: #faf8f5; color: #1a1a1a; min-height: 100vh; }
+#root { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* ===== VARIABLES ===== */
+:root {
+  --gold: #C5A95E;
+  --gold-light: #f5edda;
+  --black: #000000;
+  --white: #ffffff;
+  --bg: #faf8f5;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --text-muted: #6b7280;
+  --text-faint: #9ca3af;
+  --green: #16a34a;
+  --red: #dc2626;
+  --blue: #2563eb;
+  --orange: #ea580c;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+  --radius: 10px;
+  --font-title: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+
+/* ===== UTILITIES ===== */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; }
+.card-title { font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
+.green { color: var(--green); }
+.red { color: var(--red); }
+.gold { color: var(--gold); }
+.badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.badge-gold { background: var(--gold-light); color: #8a7333; }
+.badge-gray { background: #f3f4f6; color: #6b7280; }
+.badge-blue { background: #dbeafe; color: #2563eb; }
+.badge-orange { background: #fff7ed; color: #ea580c; }
+
+/* ===== HEADER ===== */
+.header { background: var(--black); color: var(--white); padding: 20px 0 16px; position: relative; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; }
+.header-left { }
+.header-subtitle { font-family: var(--font-body); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 2px; }
+.header-title { font-family: var(--font-title); font-size: 42px; line-height: 1; letter-spacing: 0.02em; color: var(--white); }
+.header-rate { text-align: right; }
+.header-rate-label { font-size: 11px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.1em; }
+.header-rate-value { font-family: var(--font-title); font-size: 36px; color: var(--gold); line-height: 1; }
+.header-badge { text-align: center; padding: 8px 0 0; }
+.q1-badge { display: inline-block; background: var(--gold); color: var(--black); font-size: 13px; font-weight: 600; padding: 5px 18px; border-radius: 20px; letter-spacing: 0.03em; }
+
+/* ===== NAV ===== */
+.nav { background: var(--white); border-bottom: 1px solid #e5e7eb; position: sticky; top: 0; z-index: 100; }
+.nav-inner { display: flex; gap: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.nav-btn { flex: none; padding: 14px 20px; font-family: var(--font-body); font-size: 14px; font-weight: 500; color: var(--text-muted); border: none; background: none; cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent; transition: all 0.2s; }
+.nav-btn:hover { color: var(--text); background: #f9fafb; }
+.nav-btn.active { color: var(--text); border-bottom-color: var(--gold); font-weight: 600; }
+
+/* ===== CONTENT ===== */
+.content { flex: 1; padding: 24px 0 40px; }
+.page-title { font-family: var(--font-title); font-size: 28px; color: var(--text); margin-bottom: 4px; letter-spacing: 0.01em; }
+.page-subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
+
+/* ===== KPI ROW ===== */
+.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+.kpi-card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px 20px; }
+.kpi-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+.kpi-value { font-size: 28px; font-weight: 700; color: var(--text); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.kpi-delta { font-size: 13px; font-weight: 500; margin-top: 4px; }
+
+/* ===== CHARTS GRID ===== */
+.charts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
+
+/* ===== TABLE ===== */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+thead th { text-align: left; padding: 10px 12px; font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid #e5e7eb; white-space: nowrap; }
+tbody td { padding: 10px 12px; border-bottom: 1px solid #f3f4f6; white-space: nowrap; }
+tbody tr:hover { background: #faf8f5; }
+
+/* ===== FORMS ===== */
+.form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-label { font-size: 13px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.form-input, .form-select { padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 8px; font-family: var(--font-body); font-size: 15px; color: var(--text); background: var(--white); transition: border-color 0.2s; }
+.form-input:focus, .form-select:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(197,169,94,0.15); }
+.form-range { width: 100%; accent-color: var(--gold); }
+
+/* ===== RESULTS ===== */
+.results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.result-card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; text-align: center; }
+.result-label { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+.result-value { font-size: 24px; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+.result-value.green { color: var(--green); }
+.result-value.red { color: var(--red); }
+.result-value.gold { color: var(--gold); }
+
+/* ===== CLIENT SCRIPT ===== */
+.script-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--radius); padding: 20px; margin-top: 24px; }
+.script-title { font-size: 15px; font-weight: 700; color: #92400e; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.script-text { font-size: 14px; color: #78350f; line-height: 1.7; }
+.script-text p { margin-bottom: 8px; }
+.copy-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--gold); color: var(--black); border: none; padding: 8px 16px; border-radius: 6px; font-family: var(--font-body); font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 10px; transition: opacity 0.2s; }
+.copy-btn:hover { opacity: 0.85; }
+
+/* ===== FOOTER ===== */
+.footer { background: var(--black); color: var(--text-faint); padding: 16px 0; font-size: 12px; text-align: center; letter-spacing: 0.02em; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .charts-grid { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .results-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .kpi-row { grid-template-columns: 1fr; }
+  .header-title { font-size: 32px; }
+  .header-rate-value { font-size: 28px; }
+  .nav-btn { padding: 12px 14px; font-size: 13px; }
+  .results-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== RECHARTS OVERRIDES ===== */
+.recharts-text { font-family: 'DM Sans', sans-serif !important; }
+.recharts-cartesian-axis-tick-value { font-size: 12px !important; fill: #6b7280 !important; }
+.recharts-tooltip-wrapper { outline: none; }
+
+/* ===== YEAR TABLE ===== */
+.year-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 16px; }
+.year-table th { text-align: left; padding: 8px 10px; font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; border-bottom: 2px solid #e5e7eb; }
+.year-table td { padding: 8px 10px; border-bottom: 1px solid #f3f4f6; font-variant-numeric: tabular-nums; }
+.year-table tbody tr:hover { background: #faf8f5; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
+    "recharts": "https://esm.sh/recharts@2.15.3?external=react"
+  }
+}
+</script>
+
+<script type="module">
+import React, { useState, useMemo, useCallback } from 'react';
+import { createRoot } from 'react-dom/client';
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  LineChart, Line, AreaChart, Area, Cell, Legend
+} from 'recharts';
+
+// ===== MARKET DATA =====
+const MARKETS = [
+  { name: 'Winston-Salem', county: 'Forsyth', median: 305, yoy: -1.6, dom: 76, supply: 3.8, type: 'Balanced', rent: 1325, taxRate: 0.5352, stl: 0.975, ap: 3.5 },
+  { name: 'Greensboro', county: 'Guilford', median: 307, yoy: 2.2, dom: 65, supply: 2.4, type: "Seller's", rent: 1400, taxRate: 0.7305, stl: 0.980, ap: 4.0 },
+  { name: 'Reidsville', county: 'Rockingham', median: 252, yoy: 4.3, dom: 71, supply: 3.2, type: 'Balanced', rent: 1050, taxRate: 0.5801, stl: 0.970, ap: 4.3 },
+  { name: 'Wilkesboro', county: 'Wilkes', median: 250, yoy: 6.4, dom: 60, supply: 3.0, type: "Seller's", rent: 1100, taxRate: 0.61, stl: 0.965, ap: 6.4 },
+  { name: 'Boone', county: 'Watauga', median: 558, yoy: -6.1, dom: 135, supply: 5.5, type: 'Balanced', rent: 1600, taxRate: 0.42, stl: 0.950, ap: 4.0 },
+  { name: 'Banner Elk', county: 'Avery', median: 567, yoy: 0.0, dom: 124, supply: 5.0, type: 'Balanced', rent: 1450, taxRate: 0.40, stl: 0.935, ap: 3.0 },
+  { name: 'West Jefferson', county: 'Ashe', median: 477, yoy: 3.8, dom: 90, supply: 4.5, type: 'Balanced', rent: 1300, taxRate: 0.44, stl: 0.945, ap: 3.8 },
+  { name: 'Raleigh', county: 'Wake', median: 450, yoy: -4.3, dom: 46, supply: 3.4, type: 'Balanced', rent: 1700, taxRate: 0.6570, stl: 0.978, ap: 3.0 },
+  { name: 'Elkin / Surry', county: 'Surry', median: 270, yoy: 12.5, dom: 70, supply: 3.8, type: 'Balanced', rent: 1050, taxRate: 0.56, stl: 0.960, ap: 5.0 },
+];
+
+const RATE = 6.51;
+const TABS = [
+  { id: 'dashboard', label: '📊 Dashboard' },
+  { id: 'appreciation', label: '📈 Appreciation' },
+  { id: 'waiting', label: '⏳ Cost of Waiting' },
+  { id: 'leverage', label: '🏗️ Leverage' },
+  { id: 'rentvown', label: '🏠 Rent vs Own' },
+];
+
+// ===== HELPERS =====
+const fmt = (n) => '$' + Number(n).toLocaleString('en-US', { maximumFractionDigits: 0 });
+const fmtK = (n) => '$' + Math.round(n) + 'K';
+const fmtPct = (n) => (n >= 0 ? '+' : '') + n.toFixed(1) + '%';
+const pmt = (rate, nper, pv) => {
+  const r = rate / 100 / 12;
+  if (r === 0) return pv / nper;
+  return pv * (r * Math.pow(1 + r, nper)) / (Math.pow(1 + r, nper) - 1);
+};
+
+const typeBadge = (t) => {
+  const map = { "Seller's": 'badge-gold', 'Balanced': 'badge-gray', "Buyer's": 'badge-blue', 'Shifting': 'badge-orange' };
+  return React.createElement('span', { className: `badge ${map[t] || 'badge-gray'}` }, t);
+};
+
+const CustomTooltip = ({ active, payload, label, prefix, suffix }) => {
+  if (!active || !payload || !payload.length) return null;
+  return React.createElement('div', {
+    style: { background: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px', padding: '10px 14px', boxShadow: '0 4px 6px rgba(0,0,0,0.07)', fontSize: '13px' }
+  },
+    React.createElement('div', { style: { fontWeight: 600, marginBottom: 4 } }, label),
+    payload.map((p, i) => React.createElement('div', { key: i, style: { color: p.color || p.fill || '#1a1a1a' } },
+      `${p.name || p.dataKey}: ${prefix || ''}${typeof p.value === 'number' ? p.value.toLocaleString() : p.value}${suffix || ''}`
+    ))
+  );
+};
+
+// ===== COPY BUTTON =====
+function CopyButton({ text }) {
+  const [copied, setCopied] = useState(false);
+  const handleCopy = () => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+  return React.createElement('button', { className: 'copy-btn', onClick: handleCopy },
+    copied ? '✓ Copied!' : '📋 Copy Script'
+  );
+}
+
+// ===== DASHBOARD TAB =====
+function Dashboard() {
+  const priceData = MARKETS.map(m => ({ name: m.name, value: m.median }));
+  const domData = MARKETS.map(m => ({ name: m.name, value: m.dom }));
+  const yoyData = MARKETS.map(m => ({ name: m.name, value: m.yoy }));
+  const supplyData = MARKETS.map(m => ({ name: m.name, value: m.supply }));
+
+  return React.createElement('div', { className: 'container' },
+    React.createElement('h2', { className: 'page-title' }, 'Market Dashboard — All 9 Regions'),
+    React.createElement('p', { className: 'page-subtitle' }, 'All ROG Results office markets • Q1 2026 Data'),
+
+    // KPI Cards
+    React.createElement('div', { className: 'kpi-row' },
+      React.createElement('div', { className: 'kpi-card' },
+        React.createElement('div', { className: 'kpi-label' }, '30-Yr Rate'),
+        React.createElement('div', { className: 'kpi-value' }, '6.51%'),
+        React.createElement('div', { className: 'kpi-delta red' }, '+33 bps YoY')
+      ),
+      React.createElement('div', { className: 'kpi-card' },
+        React.createElement('div', { className: 'kpi-label' }, 'NC Median'),
+        React.createElement('div', { className: 'kpi-value' }, '$360K'),
+        React.createElement('div', { className: 'kpi-delta red' }, '-4.0% YoY')
+      ),
+      React.createElement('div', { className: 'kpi-card' },
+        React.createElement('div', { className: 'kpi-label' }, 'NC Supply'),
+        React.createElement('div', { className: 'kpi-value' }, '5.02 mo'),
+        React.createElement('div', { className: 'kpi-delta green' }, '+11% YoY')
+      ),
+      React.createElement('div', { className: 'kpi-card' },
+        React.createElement('div', { className: 'kpi-label' }, 'NC Avg DOM'),
+        React.createElement('div', { className: 'kpi-value' }, '68 days'),
+        React.createElement('div', { className: 'kpi-delta red' }, '+8% YoY')
+      ),
+    ),
+
+    // Charts
+    React.createElement('div', { className: 'charts-grid' },
+      // Median Sale Price
+      React.createElement('div', { className: 'card' },
+        React.createElement('div', { className: 'card-title' }, 'Median Sale Price ($K)'),
+        React.createElement(ResponsiveContainer, { width: '100%', height: 300 },
+          React.createElement(BarChart, { data: priceData, layout: 'vertical', margin: { top: 5, right: 30, left: 80, bottom: 5 } },
+            React.createElement(CartesianGrid, { strokeDasharray: '3 3', stroke: '#f0f0f0' }),
+            React.createElement(XAxis, { type: 'number', tickFormatter: v => '$' + v + 'K', fontSize: 12 }),
+            React.createElement(YAxis, { type: 'category', dataKey: 'name', width: 90, fontSize: 11 }),
+            React.createElement(Tooltip, { content: React.createElement(CustomTooltip, { prefix: '$', suffix: 'K' }) }),
+            React.createElement(Bar, { dataKey: 'value', fill: '#C5A95E', radius: [0, 4, 4, 0], barSize: 20 })
+          )
+        )
+      ),
+
+      // Days on Market
+      React.createElement('div', { className: 'card' },
+        React.createElement('div', { className: 'card-title' }, 'Days on Market'),
+        React.createElement(ResponsiveContainer, { width: '100%', height: 300 },
+          React.createElement(BarChart, { data: domData, layout: 'vertical', margin: { top: 5, right: 30, left: 80, bottom: 5 } },
+            React.createElement(CartesianGrid, { strokeDasharray: '3 3', stroke: '#f0f0f0' }),
+            React.createElement(XAxis, { type: 'number', fontSize: 12 }),
+            React.createElement(YAxis, { type: 'category', dataKey: 'name', width: 90, fontSize: 11 }),
+            React.createElement(Tooltip, { content: React.createElement(CustomTooltip, { suffix: ' days' }) }),
+            React.createElement(Bar, { dataKey: 'value', fill: '#6b7280', radius: [0, 4, 4, 0], barSize: 20 })
+          )
+        )
+      ),
+
+      // YoY Price Change
+      React.createElement('div', { className: 'card' },
+        React.createElement('div', { className: 'card-title' }, 'YoY Price Change (%)'),
+        React.createElement(ResponsiveContainer, { width: '100%', height: 300 },
+          React.createElement(BarChart, { data: yoyData, layout: 'vertical', margin: { top: 5, right: 30, left: 80, bottom: 5 } },
+            React.createElement(CartesianGrid, { strokeDasharray: '3 3', stroke: '#f0f0f0' }),
+            React.createElement(XAxis, { type: 'number', tickFormatter: v => v + '%', fontSize: 12 }),
+            React.createElement(YAxis, { type: 'category', dataKey: 'name', width: 90, fontSize: 11 }),
+            React.createElement(Tooltip, { content: React.createElement(CustomTooltip, { suffix: '%' }) }),
+            React.createElement(Bar, { dataKey: 'value', radius: [0, 4, 4, 0], barSize: 20 },
+              yoyData.map((entry, idx) =>
+                React.createElement(Cell, { key: idx, fill: entry.value >= 0 ? '#16a34a' : '#dc2626' })
+              )
+            )
+          )
+        )
+      ),
+
+      // Months of Supply
+      React.createElement('div', { className: 'card' },
+        React.createElement('div', { className: 'card-title' }, 'Months of Supply'),
+        React.createElement(ResponsiveContainer, { width: '100%', height: 300 },
+          React.createElement(BarChart, { data: supplyData, layout: 'vertical', margin: { top: 5, right: 30, left: 80, bottom: 5 } },
+            React.createElement(CartesianGrid, { strokeDasharray: '3 3', stroke: '#f0f0f0' }),
+            React.createElement(XAxis, { type: 'number', fontSize: 12 }),
+            React.createElement(YAxis, { type: 'category', dataKey: 'name', width: 90, fontSize: 11 }),
+            React.createElement(Tooltip, { content: React.createElement(CustomTooltip, { suffix: ' mo' }) }),
+            React.createElement(Bar, { dataKey: 'value', fill: '#2563eb', radius: [0, 4, 4, 0], barSize: 20 })
+          )
+        )
+      ),
+    ),
+
+    // Market Data Table
+    React.createElement('div', { className: 'card' },
+      React.createElement('div', { className: 'card-title' }, 'Market Data Table'),
+      React.createElement('div', { className: 'table-wrap' },
+        React.createElement('table', null,
+          React.createElement('thead', null,
+            React.createElement('tr', null,
+              ['Market', 'County', 'Median', 'YoY', 'DOM', 'Supply', 'Type'].map(h =>
+                React.createElement('th', { key: h }, h)
+              )
+            )
+          ),
+          React.createElement('tbody', null,
+            MARKETS.map(m =>
+              React.createElement('tr', { key: m.name },
+                React.createElement('td', { style: { fontWeight: 600 } }, m.name),
+                React.createElement('td', null, m.county),
+                React.createElement('td', null, fmtK(m.median)),
+                React.createElement('td', { className: m.yoy >= 0 ? 'green' : 'red' }, fmtPct(m.yoy)),
+                React.createElement('td', null, m.dom + ' days'),
+                React.createElement('td', null, m.supply.toFixed(1) + ' mo'),
+                React.createElement('td', null, typeBadge(m.type)),
+              )
+            )
+          )
+        )
+      )
+    )
+  );
+}
+
+// ===== APPRECIATION TAB =====
+function Appreciation() {
+  const [marketIdx, setMarketIdx] = useState(0);
+  const market = MARKETS[marketIdx];
+  const [price, setPrice] = useState(market.median * 1000);
+  const [rate, setRate] = useState(market.ap);
+  const [years, setYears] = useState(10);
+
+  const handleMarketChange = (e) => {
+    const idx = Number(e.target.value);
+    setMarketIdx(idx);
+    setPrice(MARKETS[idx].median * 1000);
+    setRate(MARKETS[idx].ap);
+  };
+
+  const data = useMemo(() => {
+    const rows = [];
+    for (let y = 0; y <= years; y++) {
+      const val = price * Math.pow(1 + rate / 100, y);
+      const equity = val - price;
+      rows.push({ year: y, value: Math.round(val), equity: Math.round(equity) });
+    }
+    return rows;
+  }, [price, rate, years]);
+
+  const scriptText = `"If you purchased a home in ${market.name} at the current median of ${fmt(price)}, and it appreciates at ${rate}% per year — which is in line with recent trends — in ${years} years your home could be worth ${fmt(data[years].value)}. That's ${fmt(data[years].equity)} in equity growth, just from natural market appreciation. Real estate remains one of the most reliable long-term wealth-building tools."`;
+
+  return React.createElement('div', { className: 'container' },
+    React.createElement('h2', { className: 'page-title' }, 'Appreciation Calculator'),
+    React.createElement('p', { className: 'page-subtitle' }, 'Project equity growth based on historical appreciation rates'),
+
+    React.createElement('div', { className: 'card', style: { marginBottom: 24 } },
+      React.createElement('div', { className: 'form-grid' },
+        React.createElement('div', { className: 'form-group' },
+          React.createElement('label', { className: 'form-label' }, 'Market'),
+          React.createElement('select', { className: 'form-select', value: marketIdx, onChange: handleMarketChange },
+            MARKETS.map((m, i) => React.createElement('option', { key: i, value: i }, m.name + ' (' + fmtK(m.median) + ')'))
+          )
+        ),
+        React.createElement('div', { className: 'form-group' },
+          React.createElement('label', { className: 'form-label' }, 'Home Price'),
+          React.createElement('input', { className: 'form-input', type: 'number', value: price, onChange: e => setPrice(Number(e.target.value)) })
+        ),
+        React.createElement('div', { className: 'form-group' },
+          React.createElement('label', { className: 'form-label' }, 'Annual Appreciation (%)'),
+          React.createElement('input', { className: 'form-input', type: 'number', step: 0.1, value: rate, onChange: e => setRate(Number(e.target.value)) })
+        ),
+        React.createElement('div', { className: 'form-group' },
+          React.createElement('label', { className: 'form-label' }, `Projection: ${years} years`),
+          React.createElement('input', { className: 'form-range', type: 'range', min: 1, max: 30, value: years, onChange: e => setYears(Number(e.target.value)) })
+        ),
+      )
+    ),
+
+    // Results
+    React.createElement('div', { className: 'results-grid', style: { marginBottom: 24 } },
+      React.createElement('div', { className: 'result-card' },
+        React.createElement('div', { className: 'result-label' }, 'Starting Value'),
+        React.createElement('div', { className: 'result-value' }, fmt(price))
+      ),
+      React.createElement('div', { className: 'result-card' },
+        React.createElement('div', { className: 'result-label' }, `Value in ${years} Years`),
+        React.createElement('div', { className: 'result-value gold' }, fmt(data[years].value))
+      ),
+      React.createElement('div', { className: 'result-card' },
+        React.createElement('div', { className: 'result-label' }, 'Total Equity Growth'),
+        React.createElement('div', { className: 'result-value green' }, fmt(data[years].equity))
+      ),
+      React.createElement('div', { className: 'result-card' },
+        React.createElement('div', { className: 'result-label' }, 'Total Return'),
+        React.createElement('div', { className: 'result-value green' }, ((data[years].value / price - 1) * 100).toFixed(1) + '%')
+      ),
+    ),
+
+    // Chart
+    React.createElement('div', { className: 'card', style: { marginBottom: 24 } },
+      React.createElement('div', { className: 'card-title' }, 'Equity Growth Over Time'),
+      React.createElement(ResponsiveContainer, { width: '100%', height: 320 },
+        React.createElement(AreaChart, { data: data, margin: { top: 10, right: 30, left: 20, bottom: 5 } },
+          React.createElement(CartesianGrid, { strokeDasharray: '3 3', stroke: '#f0f0f0' }),
+          React.createElement(XAxis, { dataKey: 'year', label: { value: 'Year', position: 'insideBottom', offset: -5, style: { fontSize: 12 } } }),
+          React.createElement(YAxis, { tickFormatter: v => '$' + (v / 1000).toFixed(0) + 'K', fontSize: 12 }),
+          React.createElement(Tooltip, { formatter: v => fmt(v), labelFormatter: l => 'Year ' + l }),
+          React.createElement(Area, { type: 'monotone', dataKey: 'value', stroke: '#C5A95E', fill: '#f5edda', strokeWidth: 2, name: 'Home Value' }),
+          React.createElement(Area, { type: 'monotone', dataKey: 'equity', stroke: '#16a34a', fill: '#dcfce7', strokeWidth: 2, name: 'Equity Growth' }),
+        )
+      )
+    ),
+
+    // Year-by-year table
+    React.createElement('div', { className: 'card', style: { marginBottom: 24 } },
+      React.createElement('div', { className: 'card-title' }, 'Year-by-Year Projection'),
+      React.createElement('div', { className: 'table-wrap' },
+        React.createElement('table', { className: 'year-table' },
+          React.createElement('thead', null,
+            React.createElement('tr', null,
+              ['Year', 'Home Value', 'Equity Growth', 'Annual Gain'].map(h =>
+                React.createElement('th', { key: h }, h)
+              )
+            )
+          ),
+          React.createElement('tbody', null,
+            data.map((row, i) =>
+              React.createElement('tr', { key: i },
+                React.createElement('td', null, row.year),
+                React.createElement('td', null, fmt(row.value)),
+                React.createElement('td', { className: 'green' }, fmt(row.equity)),
+                React.createElement('td', null, i > 0 ? fmt(row.value - data[i - 1].value) : '—'),
+              )
+            )
+          )
+        )
+      )
+    ),
+
+    // Client Script
+    React.createElement('div', { className: 'script-box' },
+      React.createElement('div', { className: 'script-title' }, '📋 Client Script'),
+      React.createElement('div', { className: 'script-text' },
+        React.createElement('p', null, scriptText)
+      ),
+      React.createElement(CopyButton, { text: scriptText })
+    )
+  );
+}
+
+// ===== COST OF WAITING TAB =====
+function CostOfWaiting() {
+  const [marketIdx, setMarketIdx] = useState(0);
+  const market = MARKETS[marketIdx];
+  const [price, setPrice] = useState(market.median * 1000);
+  const [rent, setRent] = useState(market.rent);
+  const [months, setMonths] = useState(6);
+  const [priceInc, setPriceInc] = useState(market.ap);
+  const [rateInc, setRateInc] = useState(0.25);
+
+  const handleMarketChange = (e) => {
+    const idx = Number(e.target.value);
+    setMarketIdx(idx);
+    setPrice(MARKETS[idx].median * 1000);
+    setRent(MARKETS[idx].rent);
+    setPriceInc(MARKETS[idx].ap);
+  };
+
+  const results = useMemo(() => {
+    const rentPaid = rent * months;
+    const annualFactor = priceInc / 100;
+    const newPrice = price * Math.pow(1 + annualFactor, months / 12);
+    const priceIncrease = newPrice - price;
+
+    const currentRate = RATE;
+    const futureRate = currentRate + rateInc;
+    const loanAmt = price * 0.95; // 5% down
+    const currentPayment = pmt(currentRate, 360, loanAmt);
+    const futureLoanAmt = newPrice * 0.95;
+    const futurePayment = pmt(futureRate, 360, futureLoanAmt);
+    const monthlyRateCost = futurePayment - currentPayment;
+    const totalRateCost = monthlyRateCost * 360;
+
+    const totalCost = rentPaid + priceIncrease + Math.max(0, monthlyRateCost * 12);
+
+    return { rentPaid, priceIncrease, monthlyRateCost, totalRateCost, totalCost, newPrice, futureRate, currentPayment, futurePayment };
+  }, [price, rent, months, priceInc, rateInc]);
+
+  const chartData = [
+    { name: 'Rent Paid', value: Math.round(results.rentPaid), fill: '#6b7280' },
+    { name: 'Price Increase', value: Math.round(results.priceIncrease), fill: '#dc2626' },
+    { name: 'Added Rate Cost (1yr)', value: Math.round(Math.max(0, results.monthlyRateCost * 12)), fill: '#C5A95E' },
+  ];
+
+  const scriptText = `"If you wait ${months} months to buy, here's what it could cost you: You'd spend ${fmt(results.rentPaid)} in rent that builds zero equity. The home price could increase by ${fmt(Math.round(results.priceIncrease))} based on current trends. And if rates move up just ${rateInc}%, your monthly payment would go from ${fmt(Math.round(results.currentPayment))} to ${fmt(Math.round(results.futurePayment))} — that's ${fmt(Math.round(results.monthlyRateCost))} more per month. The total cost of waiting? Approximately ${fmt(Math.round(results.totalCost))}. Every month you wait is money you're leaving on the table."`;
+
+  return React.createElement('div', { className: 'container' },
+    React.createElement('h2', { className: 'page-title' }, 'Cost of Waiting Calculator'),
+    React.createElement('p', { className: 'page-subtitle' }, 'Show clients the true cost of delaying their purchase'),
+
+    React.createElement('div', { className: 'card', style: { marginBottom: 24 } },
+      React.createElement('div', { className: 'form-grid' },
+        React.createElement('div', { className: 'form-group' },
+          React.createElement('label', { className: 'form-label' }, 'Market'),
+          React.createElement('select', { className: 'form-select', value: marketIdx, onChange: handleMarketChange },
+            MARKETS.map((m, i) => React.createElement('option', { key: i, value: i }, m.name))
+          )
+        ),
+        React.createElement('div', { className: 'form-group' },
+          React.createElement('label', { className: 'form-label' }, 'Current Home Price'),
+          React.createElement('input', { className: 'form-input', type: 'number', value: price, onChange: e => setPrice(Number(e.target.value)) })
+        ),
+        React.createElement('div', { className: 'form-group' },
+          React.createElement('label', { className: 'form-label' }, 'Monthly Rent'),
+          React.createElement('input', { className: 'form-input', type: 'number', value: rent, onChange: e => setRent(Number(e.target.value)) })
+        ),
+        React.createElement('div', { className: 'form-group' },
+          React.createElement('label', { className: 'form-label' }, `Months Waiting: ${months}`),
+          React.createElement('input', { className: 'form-range', type: 'range', min: 1, max: 24, value: months, onChange: e => setMonths(Number(e.target.value)) })
+        ),
+        React.createElement('div', { className: 'form-group' },
+          React.createElement('label', { className: 'form-label' }, 'Projected Price Increase (%/yr)'),
+          React.createElement('input', { className: 'form-input', type: 'number', step: 0.1, value: priceInc, onChange: e => setPriceInc(Number(e.target.value)) })
+        ),
+        React.createElement('div', { className: 'form-group' },
+          React.createElement('label', { className: 'form-label' }, 'Projected Rate Increase (%)'),
+          React.createElement('input', { className: 'form-input', type: 'number', step: 0.05, value: rateInc, onChange: e => setRateInc(Number(e.target.value)) })
+        ),
+      )
+    ),
+
+    // Results
+    React.createElement('div', { className: 'results-grid', style: { marginBottom: 24 } },
+      React.createElement('div', { className: 'result-card' },
+        React.createElement('div', { className: 'result-label' }, 'Rent Paid'),
+        React.createElement('div', { className: 'result-value red' }, fmt(results.rentPaid))
+      ),
+      React.createElement('div', { className: 'result-card' },
+        React.createElement('div', { className: 'result-label' }, 'Price Increase'),
+        React.createElement('div', { className: 'result-value red' }, fmt(Math.round(results.priceIncrease)))
+      ),
+      React.createElement('div', { className: 'result-card' },
+        React.createElement('div', { className: 'result-label' }, 'Extra Monthly Payment'),
+        React.createElement('div', { className: 'result-value red' }, fmt(Math.round(results.monthlyRateCost)) + '/mo')
+      ),
+      React.createElement('div', { className: 'result-card' },
+        React.createElement('div', { className: 'result-label' }, 'Total Cost of Waiting'),
+        React.createElement('div', { className: 'result-value red', style: { fontSize: 28 } }, fmt(Math.round(results.totalCost)))
+      ),
+    ),
+
+    // Chart
+    React.createElement('div', { className: 'card', style: { marginBottom: 24 } },
+      React.createElement('div', { className: 'card-title' }, 'Cost Breakdown'),
+      React.createElement(ResponsiveContainer, { width: '100%', height: 280 },
+        React.createElement(BarChart, { data: chartData, margin: { top: 10, right: 30, left: 20, bottom: 5 } },
+          React.createElement(CartesianGrid, { strokeDasharray: '3 3', stroke: '#f0f0f0' }),
+          React.createElement(XAxis, { dataKey: 'name', fontSize: 12 }),
+          React.createElement(YAxis, { tickFormatter: v => '$' + (v / 1000).toFixed(0) + 'K', fontSize: 12 }),
+          React.createElement(Tooltip, { formatter: v => fmt(v) }),
+          React.createElement(Bar, { dataKey: 'value', radius: [4, 4, 0, 0], barSize: 60 },
+            chartData.map((entry, idx) =>
+              React.createElement(Cell, { key: idx, fill: entry.fill })
+            )
+          )
+        )
+      )
+    ),
+
+    // Client Script
+    React.createElement('div', { className: 'script-box' },
+      React.createElement('div', { className: 'script-title' }, '📋 Client Script'),
+      React.createElement('div', { className: 'script-text' },
+        React.createElement('p', null, scriptText)
+      ),
+      React.createElement(CopyButton, { text: scriptText })
+    )
+  );
+}
+
+// ===== LEVERAGE TAB =====
+function Leverage() {
+  const [price, setPrice] = useState(305000);
+  const [downPct, setDownPct] = useState(5);
+  const [holdYears, setHoldYears] = useState(5);
+  const [appRate, setAppRate] = useState(3.5);
+
+  const results = useMemo(() => {
+    const downPayment = price * downPct / 100;
+    const closingCosts = price * 0.03;
+    const totalInvested = downPayment + closingCosts;
+    const futureValue = price * Math.pow(1 + appRate / 100, holdYears);
+    const totalEquityGain = futureValue - price;
+
+    // Principal paydown
+    const loanAmt = price - downPayment;
+    const monthlyPayment = pmt(RATE, 360, loanAmt);
+    let balance = loanAmt;
+    const monthlyRate = RATE / 100 / 12;
+    for (let m = 0; m < holdYears * 12; m++) {
+      const interest = balance * monthlyRate;
+      const principal = monthlyPayment - interest;
+      balance -= principal;
+    }
+    const principalPaid = loanAmt - balance;
+
+    const totalEquity = downPayment + totalEquityGain + principalPaid;
+    const roi = ((totalEquity - totalInvested) / totalInvested * 100);
+    const leverageRatio = totalEquity / totalInvested;
+
+    return { downPayment, closingCosts, totalInvested, futureValue, totalEquityGain, principalPaid, totalEquity, roi, leverageRatio };
+  }, [price, downPct, holdYears, appRate]);
+
+  const chartData = [
+    { name: 'Cash Invested', value: Math.round(results.totalInvested), fill: '#6b7280' },
+    { name: 'Total Equity', value: Math.round(results.totalEquity), fill: '#C5A95E' },
+  ];
+
+  const breakdownData = [
+    { name: 'Down Payment', value: Math.round(results.downPayment), fill: '#6b7280' },
+    { name: 'Appreciation', value: Math.round(results.totalEquityGain), fill: '#16a34a' },
+    { name: 'Principal Paydown', value: Math.round(results.principalPaid), fill: '#2563eb' },
+  ];
+
+  const scriptText = `"Here's the power of leverage in real estate: With just ${fmt(Math.round(results.totalInvested))} invested (${downPct}% down plus closing costs on a ${fmt(price)} home), in ${holdYears} years you could have ${fmt(Math.round(results.totalEquity))} in total equity. That's a ${results.roi.toFixed(0)}% return on your actual cash invested — a ${results.leverageRatio.toFixed(1)}x return. Your equity comes from three sources: your initial investment, ${fmt(Math.round(results.totalEquityGain))} in appreciation, and ${fmt(Math.round(results.principalPaid))} in principal paydown. No other investment gives you this kind of leverage."`;
+
+  return React.createElement('div', { className: 'container' },
+    React.createElement('h2', { className: 'page-title' }, 'Leverage Calculator'),
+    React.createElement('p', { className: 'page-subtitle' }, 'Demonstrate the power of real estate leverage to clients'),
+
+    React.createElement('div', { className: 'card', style: { marginBottom: 24 } },
+      React.createElement('div', { className: 'form-grid' },
+        React.createElement('div', { className: 'form-group' },
+          React.createElement('label', { className: 'form-label' }, 'Home Price'),
+          React.createElement('input', { className: 'form-input', type: 'number', value: price, onChange: e => setPrice(Number(e.target.value)) })
+        ),
+        React.createElement('div', { className: 'form-group' },
+          React.createElement('label', { className: 'form-label' }, `Down Payment: ${downPct}%`),
+          React.createElement('input', { className: 'form-range', type: 'range', min: 3, max: 25, value: downPct, onChange: e => setDownPct(Number(e.target.value)) })
+        ),
+        React.createElement('div', { className: 'form-group' },
+          React.createElement('label', { className: 'form-label' }, `Hold Period: ${holdYears} years`),
+          React.createElement('input', { className: 'form-range', type: 'range', min: 1, max: 30, value: holdYears, onChange: e => setHoldYears(Number(e.target.value)) })
+        ),
+        React.createElement('div', { className: 'form-group' },
+          React.createElement('label', { className: 'form-label' }, 'Annual Appreciation (%)'),
+          React.createElement('input', { className: 'form-input', type: 'number', step: 0.1, value: appRate, onChange: e => setAppRate(Number(e.target.value)) })
+        ),
+      )
+    ),
+
+    // Results
+    React.createElement('div', { className: 'results-grid', style: { marginBottom: 24 } },
+      React.createElement('div', { className: 'result-card' },
+        React.createElement('div', { className: 'result-label' }, 'Total Cash Invested'),
+        React.createElement('div', { className: 'result-value' }, fmt(Math.round(results.totalInvested)))
+      ),
+      React.createElement('div', { className: 'result-card' },
+        React.createElement('div', { className: 'result-label' }, 'Total Equity Built'),
+        React.createElement('div', { className: 'result-value gold' }, fmt(Math.round(results.totalEquity)))
+      ),
+      React.createElement('div', { className: 'result-card' },
+        React.createElement('div', { className: 'result-label' }, 'ROI on Cash'),
+        React.createElement('div', { className: 'result-value green' }, results.roi.toFixed(0) + '%')
+      ),
+      React.createElement('div', { className: 'result-card' },
+        React.createElement('div', { className: 'result-label' }, 'Leverage Ratio'),
+        React.createElement('div', { className: 'result-value green' }, results.leverageRatio.toFixed(1) + 'x')
+      ),
+    ),
+
+    // Charts
+    React.createElement('div', { className: 'charts-grid', style: { marginBottom: 24 } },
+      React.createElement('div', { className: 'card' },
+        React.createElement('div', { className: 'card-title' }, 'Cash Invested vs Total Equity'),
+        React.createElement(ResponsiveContainer, { width: '100%', height: 280 },
+          React.createElement(BarChart, { data: chartData, margin: { top: 10, right: 30, left: 20, bottom: 5 } },
+            React.createElement(CartesianGrid, { strokeDasharray: '3 3', stroke: '#f0f0f0' }),
+            React.createElement(XAxis, { dataKey: 'name', fontSize: 12 }),
+            React.createElement(YAxis, { tickFormatter: v => '$' + (v / 1000).toFixed(0) + 'K', fontSize: 12 }),
+            React.createElement(Tooltip, { formatter: v => fmt(v) }),
+            React.createElement(Bar, { dataKey: 'value', radius: [4, 4, 0, 0], barSize: 80 },
+              chartData.map((entry, idx) =>
+                React.createElement(Cell, { key: idx, fill: entry.fill })
+              )
+            )
+          )
+        )
+      ),
+      React.createElement('div', { className: 'card' },
+        React.createElement('div', { className: 'card-title' }, 'Equity Breakdown'),
+        React.createElement(ResponsiveContainer, { width: '100%', height: 280 },
+          React.createElement(BarChart, { data: breakdownData, margin: { top: 10, right: 30, left: 20, bottom: 5 } },
+            React.createElement(CartesianGrid, { strokeDasharray: '3 3', stroke: '#f0f0f0' }),
+            React.createElement(XAxis, { dataKey: 'name', fontSize: 12 }),
+            React.createElement(YAxis, { tickFormatter: v => '$' + (v / 1000).toFixed(0) + 'K', fontSize: 12 }),
+            React.createElement(Tooltip, { formatter: v => fmt(v) }),
+            React.createElement(Bar, { dataKey: 'value', radius: [4, 4, 0, 0], barSize: 60 },
+              breakdownData.map((entry, idx) =>
+                React.createElement(Cell, { key: idx, fill: entry.fill })
+              )
+            )
+          )
+        )
+      ),
+    ),
+
+    // Client Script
+    React.createElement('div', { className: 'script-box' },
+      React.createElement('div', { className: 'script-title' }, '📋 Client Script'),
+      React.createElement('div', { className: 'script-text' },
+        React.createElement('p', null, scriptText)
+      ),
+      React.createElement(CopyButton, { text: scriptText })
+    )
+  );
+}
+
+// ===== RENT VS OWN TAB =====
+function RentVsOwn() {
+  const [marketIdx, setMarketIdx] = useState(0);
+  const market = MARKETS[marketIdx];
+  const [rentAmt, setRentAmt] = useState(market.rent);
+  const [homePrice, setHomePrice] = useState(market.median * 1000);
+  const [downPct, setDownPct] = useState(5);
+
+  const handleMarketChange = (e) => {
+    const idx = Number(e.target.value);
+    setMarketIdx(idx);
+    setRentAmt(MARKETS[idx].rent);
+    setHomePrice(MARKETS[idx].median * 1000);
+  };
+
+  const results = useMemo(() => {
+    const downPayment = homePrice * downPct / 100;
+    const loanAmt = homePrice - downPayment;
+    const monthlyMortgage = pmt(RATE, 360, loanAmt);
+    const monthlyTax = (homePrice * market.taxRate / 100) / 12;
+    const monthlyInsurance = (homePrice * 0.0035) / 12;
+    const monthlyPMI = downPct < 20 ? loanAmt * 0.005 / 12 : 0;
+    const monthlyOwn = monthlyMortgage + monthlyTax + monthlyInsurance + monthlyPMI;
+
+    // 5-year comparison
+    const years = 5;
+    const totalRent5 = rentAmt * 12 * years;
+    const totalOwn5 = monthlyOwn * 12 * years;
+
+    // Equity built in 5 years
+    let balance = loanAmt;
+    const monthlyRate = RATE / 100 / 12;
+    for (let m = 0; m < years * 12; m++) {
+      const interest = balance * monthlyRate;
+      const principal = monthlyMortgage - interest;
+      balance -= principal;
+    }
+    const principalPaid = loanAmt - balance;
+    const appreciation = homePrice * Math.pow(1 + market.ap / 100, years) - homePrice;
+    const totalEquity = downPayment + principalPaid + appreciation;
+
+    // Net cost = total payments - equity
+    const netCostOwn = totalOwn5 + downPayment - totalEquity;
+
+    // Chart data (yearly)
+    const yearlyData = [];
+    let cumRent = 0, cumOwn = 0, cumEquity = 0;
+    let bal = loanAmt;
+    for (let y = 1; y <= years; y++) {
+      cumRent += rentAmt * 12;
+      cumOwn += monthlyOwn * 12;
+      let yearPrincipal = 0;
+      for (let m = 0; m < 12; m++) {
+        const interest = bal * monthlyRate;
+        const principal = monthlyMortgage - interest;
+        bal -= principal;
+        yearPrincipal += principal;
+      }
+      const yearApp = homePrice * Math.pow(1 + market.ap / 100, y) - homePrice;
+      cumEquity = downPayment + (loanAmt - bal) + yearApp;
+      yearlyData.push({
+        year: 'Year ' + y,
+        'Rent Paid': Math.round(cumRent),
+        'Own Costs': Math.round(cumOwn),
+        'Equity Built': Math.round(cumEquity),
+      });
+    }
+
+    return {
+      monthlyMortgage, monthlyTax, monthlyInsurance, monthlyPMI, monthlyOwn,
+      totalRent5, totalOwn5, totalEquity, netCostOwn, principalPaid, appreciation,
+      downPayment, yearlyData
+    };
+  }, [homePrice, rentAmt, downPct, market]);
+
+  const scriptText = `"Let's compare renting at ${fmt(rentAmt)}/month vs owning a ${fmt(homePrice)} home in ${market.name}. Your estimated monthly ownership cost would be about ${fmt(Math.round(results.monthlyOwn))}. Yes, that's ${results.monthlyOwn > rentAmt ? 'more' : 'less'} than your rent. But here's the key difference: Over 5 years, you'd pay ${fmt(results.totalRent5)} in rent and build zero equity. As a homeowner, you'd build approximately ${fmt(Math.round(results.totalEquity))} in equity from your down payment, principal paydown, and appreciation. Renting is paying someone else's mortgage. Owning is paying your future self."`;
+
+  return React.createElement('div', { className: 'container' },
+    React.createElement('h2', { className: 'page-title' }, 'Rent vs Own Comparison'),
+    React.createElement('p', { className: 'page-subtitle' }, 'Help clients see the long-term value of homeownership'),
+
+    React.createElement('div', { className: 'card', style: { marginBottom: 24 } },
+      React.createElement('div', { className: 'form-grid' },
+        React.createElement('div', { className: 'form-group' },
+          React.createElement('label', { className: 'form-label' }, 'Market'),
+          React.createElement('select', { className: 'form-select', value: marketIdx, onChange: handleMarketChange },
+            MARKETS.map((m, i) => React.createElement('option', { key: i, value: i }, m.name))
+          )
+        ),
+        React.createElement('div', { className: 'form-group' },
+          React.createElement('label', { className: 'form-label' }, 'Monthly Rent'),
+          React.createElement('input', { className: 'form-input', type: 'number', value: rentAmt, onChange: e => setRentAmt(Number(e.target.value)) })
+        ),
+        React.createElement('div', { className: 'form-group' },
+          React.createElement('label', { className: 'form-label' }, 'Home Price'),
+          React.createElement('input', { className: 'form-input', type: 'number', value: homePrice, onChange: e => setHomePrice(Number(e.target.value)) })
+        ),
+        React.createElement('div', { className: 'form-group' },
+          React.createElement('label', { className: 'form-label' }, `Down Payment: ${downPct}%`),
+          React.createElement('input', { className: 'form-range', type: 'range', min: 3, max: 25, value: downPct, onChange: e => setDownPct(Number(e.target.value)) })
+        ),
+      )
+    ),
+
+    // Monthly Comparison
+    React.createElement('div', { className: 'results-grid', style: { marginBottom: 24 } },
+      React.createElement('div', { className: 'result-card' },
+        React.createElement('div', { className: 'result-label' }, 'Monthly Rent'),
+        React.createElement('div', { className: 'result-value red' }, fmt(rentAmt))
+      ),
+      React.createElement('div', { className: 'result-card' },
+        React.createElement('div', { className: 'result-label' }, 'Monthly Own Cost'),
+        React.createElement('div', { className: 'result-value' }, fmt(Math.round(results.monthlyOwn)))
+      ),
+      React.createElement('div', { className: 'result-card' },
+        React.createElement('div', { className: 'result-label' }, '5-Year Rent Total'),
+        React.createElement('div', { className: 'result-value red' }, fmt(results.totalRent5))
+      ),
+      React.createElement('div', { className: 'result-card' },
+        React.createElement('div', { className: 'result-label' }, '5-Year Equity Built'),
+        React.createElement('div', { className: 'result-value green' }, fmt(Math.round(results.totalEquity)))
+      ),
+    ),
+
+    // Ownership cost breakdown
+    React.createElement('div', { className: 'card', style: { marginBottom: 24 } },
+      React.createElement('div', { className: 'card-title' }, 'Monthly Ownership Breakdown'),
+      React.createElement('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 12 } },
+        React.createElement('div', null,
+          React.createElement('div', { style: { fontSize: 12, color: '#6b7280', fontWeight: 500 } }, 'Mortgage (P&I)'),
+          React.createElement('div', { style: { fontSize: 18, fontWeight: 700 } }, fmt(Math.round(results.monthlyMortgage)))
+        ),
+        React.createElement('div', null,
+          React.createElement('div', { style: { fontSize: 12, color: '#6b7280', fontWeight: 500 } }, 'Property Tax'),
+          React.createElement('div', { style: { fontSize: 18, fontWeight: 700 } }, fmt(Math.round(results.monthlyTax)))
+        ),
+        React.createElement('div', null,
+          React.createElement('div', { style: { fontSize: 12, color: '#6b7280', fontWeight: 500 } }, 'Insurance'),
+          React.createElement('div', { style: { fontSize: 18, fontWeight: 700 } }, fmt(Math.round(results.monthlyInsurance)))
+        ),
+        results.monthlyPMI > 0 ? React.createElement('div', null,
+          React.createElement('div', { style: { fontSize: 12, color: '#6b7280', fontWeight: 500 } }, 'PMI'),
+          React.createElement('div', { style: { fontSize: 18, fontWeight: 700 } }, fmt(Math.round(results.monthlyPMI)))
+        ) : null,
+      )
+    ),
+
+    // Chart
+    React.createElement('div', { className: 'card', style: { marginBottom: 24 } },
+      React.createElement('div', { className: 'card-title' }, 'Rent Paid vs Equity Built Over 5 Years'),
+      React.createElement(ResponsiveContainer, { width: '100%', height: 320 },
+        React.createElement(AreaChart, { data: results.yearlyData, margin: { top: 10, right: 30, left: 20, bottom: 5 } },
+          React.createElement(CartesianGrid, { strokeDasharray: '3 3', stroke: '#f0f0f0' }),
+          React.createElement(XAxis, { dataKey: 'year', fontSize: 12 }),
+          React.createElement(YAxis, { tickFormatter: v => '$' + (v / 1000).toFixed(0) + 'K', fontSize: 12 }),
+          React.createElement(Tooltip, { formatter: v => fmt(v) }),
+          React.createElement(Area, { type: 'monotone', dataKey: 'Rent Paid', stroke: '#dc2626', fill: '#fecaca', strokeWidth: 2 }),
+          React.createElement(Area, { type: 'monotone', dataKey: 'Equity Built', stroke: '#16a34a', fill: '#dcfce7', strokeWidth: 2 }),
+        )
+      )
+    ),
+
+    // Client Script
+    React.createElement('div', { className: 'script-box' },
+      React.createElement('div', { className: 'script-title' }, '📋 Client Script'),
+      React.createElement('div', { className: 'script-text' },
+        React.createElement('p', null, scriptText)
+      ),
+      React.createElement(CopyButton, { text: scriptText })
+    )
+  );
+}
+
+// ===== MAIN APP =====
+function App() {
+  const [activeTab, setActiveTab] = useState('dashboard');
+
+  const renderTab = () => {
+    switch (activeTab) {
+      case 'dashboard': return React.createElement(Dashboard);
+      case 'appreciation': return React.createElement(Appreciation);
+      case 'waiting': return React.createElement(CostOfWaiting);
+      case 'leverage': return React.createElement(Leverage);
+      case 'rentvown': return React.createElement(RentVsOwn);
+      default: return null;
+    }
+  };
+
+  return React.createElement(React.Fragment, null,
+    // Header
+    React.createElement('header', { className: 'header' },
+      React.createElement('div', { className: 'container' },
+        React.createElement('div', { className: 'header-inner' },
+          React.createElement('div', { className: 'header-left' },
+            React.createElement('div', { className: 'header-subtitle' }, 'Realty ONE Group Results'),
+            React.createElement('h1', { className: 'header-title' }, 'REAL ESTATE MATH'),
+          ),
+          React.createElement('div', { className: 'header-rate' },
+            React.createElement('div', { className: 'header-rate-label' }, '30-Year Rate'),
+            React.createElement('div', { className: 'header-rate-value' }, RATE + '%'),
+          ),
+        ),
+        React.createElement('div', { className: 'header-badge' },
+          React.createElement('span', { className: 'q1-badge' }, 'Q1 2026 Data • Jan – Mar 2026'),
+        ),
+      ),
+    ),
+
+    // Nav
+    React.createElement('nav', { className: 'nav' },
+      React.createElement('div', { className: 'container' },
+        React.createElement('div', { className: 'nav-inner' },
+          TABS.map(tab =>
+            React.createElement('button', {
+              key: tab.id,
+              className: 'nav-btn' + (activeTab === tab.id ? ' active' : ''),
+              onClick: () => setActiveTab(tab.id)
+            }, tab.label)
+          )
+        )
+      )
+    ),
+
+    // Content
+    React.createElement('main', { className: 'content' }, renderTab()),
+
+    // Footer
+    React.createElement('footer', { className: 'footer' },
+      React.createElement('div', { className: 'container' },
+        'Data sources: Redfin, Realtor.com, Zillow, NC REALTORS\u00AE, Bankrate \u2022 Q1 2026'
+      )
+    )
+  );
+}
+
+// Mount
+const root = createRoot(document.getElementById('root'));
+root.render(React.createElement(App));
+</script>
+</body>
+</html>
