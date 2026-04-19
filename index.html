@@ -192,18 +192,18 @@ import {
 
 // ===== MARKET DATA =====
 const MARKETS = [
-  { name: 'Winston-Salem', county: 'Forsyth', median: 305, yoy: -1.6, dom: 76, supply: 3.8, type: 'Balanced', rent: 1325, taxRate: 0.5352, stl: 0.975, ap: 3.5 },
-  { name: 'Greensboro', county: 'Guilford', median: 307, yoy: 2.2, dom: 65, supply: 2.4, type: "Seller's", rent: 1400, taxRate: 0.7305, stl: 0.980, ap: 4.0 },
-  { name: 'Reidsville', county: 'Rockingham', median: 252, yoy: 4.3, dom: 71, supply: 3.2, type: 'Balanced', rent: 1050, taxRate: 0.5801, stl: 0.970, ap: 4.3 },
-  { name: 'Wilkesboro', county: 'Wilkes', median: 250, yoy: 6.4, dom: 60, supply: 3.0, type: "Seller's", rent: 1100, taxRate: 0.61, stl: 0.965, ap: 6.4 },
-  { name: 'Boone', county: 'Watauga', median: 558, yoy: -6.1, dom: 135, supply: 5.5, type: 'Balanced', rent: 1600, taxRate: 0.42, stl: 0.950, ap: 4.0 },
-  { name: 'Banner Elk', county: 'Avery', median: 567, yoy: 0.0, dom: 124, supply: 5.0, type: 'Balanced', rent: 1450, taxRate: 0.40, stl: 0.935, ap: 3.0 },
-  { name: 'West Jefferson', county: 'Ashe', median: 477, yoy: 3.8, dom: 90, supply: 4.5, type: 'Balanced', rent: 1300, taxRate: 0.44, stl: 0.945, ap: 3.8 },
-  { name: 'Raleigh', county: 'Wake', median: 450, yoy: -4.3, dom: 46, supply: 3.4, type: 'Balanced', rent: 1700, taxRate: 0.6570, stl: 0.978, ap: 3.0 },
-  { name: 'Elkin / Surry', county: 'Surry', median: 270, yoy: 12.5, dom: 70, supply: 3.8, type: 'Balanced', rent: 1050, taxRate: 0.56, stl: 0.960, ap: 5.0 },
+  { name: 'Winston-Salem', county: 'Forsyth', median: 295, yoy: 3.6, dom: 45, supply: 3.5, type: 'Balanced', rent: 1595, taxRate: 0.5352, stl: 0.975, ap: 3.6 },
+  { name: 'Greensboro', county: 'Guilford', median: 315, yoy: 4.8, dom: 49, supply: 3.0, type: "Seller's", rent: 1400, taxRate: 0.7305, stl: 0.980, ap: 4.8 },
+  { name: 'Reidsville', county: 'Rockingham', median: 217, yoy: 3.5, dom: 113, supply: 3.0, type: "Seller's", rent: 950, taxRate: 0.5801, stl: 0.970, ap: 3.5 },
+  { name: 'Wilkesboro', county: 'Wilkes', median: 345, yoy: 1.5, dom: 77, supply: 4.5, type: 'Balanced', rent: 1100, taxRate: 0.61, stl: 0.965, ap: 3.5 },
+  { name: 'Boone', county: 'Watauga', median: 498, yoy: -7.6, dom: 100, supply: 5.0, type: 'Balanced', rent: 2200, taxRate: 0.42, stl: 0.970, ap: 3.5 },
+  { name: 'Banner Elk', county: 'Avery', median: 578, yoy: 0.0, dom: 91, supply: 5.5, type: "Buyer's", rent: 1450, taxRate: 0.40, stl: 0.935, ap: 3.0 },
+  { name: 'West Jefferson', county: 'Ashe', median: 290, yoy: 3.8, dom: 51, supply: 4.0, type: 'Balanced', rent: 1550, taxRate: 0.44, stl: 0.945, ap: 3.8 },
+  { name: 'Raleigh', county: 'Wake', median: 450, yoy: -1.4, dom: 43, supply: 3.5, type: 'Balanced', rent: 1616, taxRate: 0.6570, stl: 0.978, ap: 3.0 },
+  { name: 'Elkin / Surry', county: 'Surry', median: 253, yoy: 4.1, dom: 78, supply: 4.0, type: 'Balanced', rent: 942, taxRate: 0.56, stl: 0.960, ap: 4.1 },
 ];
 
-const RATE = 6.51;
+const RATE = 6.25;
 const TABS = [
   { id: 'dashboard', label: '📊 Dashboard' },
   { id: 'appreciation', label: '📈 Appreciation' },
@@ -262,29 +262,29 @@ function Dashboard() {
 
   return React.createElement('div', { className: 'container' },
     React.createElement('h2', { className: 'page-title' }, 'Market Dashboard — All 9 Regions'),
-    React.createElement('p', { className: 'page-subtitle' }, 'All ROG Results office markets • Q1 2026 Data'),
+    React.createElement('p', { className: 'page-subtitle' }, 'All ROG Results office markets • Updated April 19, 2026'),
 
     // KPI Cards
     React.createElement('div', { className: 'kpi-row' },
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, '30-Yr Rate'),
-        React.createElement('div', { className: 'kpi-value' }, '6.51%'),
-        React.createElement('div', { className: 'kpi-delta red' }, '+33 bps YoY')
+        React.createElement('div', { className: 'kpi-value' }, '6.25%'),
+        React.createElement('div', { className: 'kpi-delta green' }, '-26 bps YoY')
       ),
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, 'NC Median'),
-        React.createElement('div', { className: 'kpi-value' }, '$360K'),
-        React.createElement('div', { className: 'kpi-delta red' }, '-4.0% YoY')
+        React.createElement('div', { className: 'kpi-value' }, '$365K'),
+        React.createElement('div', { className: 'kpi-delta green' }, '+1.4% YoY')
       ),
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, 'NC Supply'),
-        React.createElement('div', { className: 'kpi-value' }, '5.02 mo'),
-        React.createElement('div', { className: 'kpi-delta green' }, '+11% YoY')
+        React.createElement('div', { className: 'kpi-value' }, '5.41 mo'),
+        React.createElement('div', { className: 'kpi-delta green' }, '+11.4% YoY')
       ),
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, 'NC Avg DOM'),
-        React.createElement('div', { className: 'kpi-value' }, '68 days'),
-        React.createElement('div', { className: 'kpi-delta red' }, '+8% YoY')
+        React.createElement('div', { className: 'kpi-value' }, '66 days'),
+        React.createElement('div', { className: 'kpi-delta red' }, '+5% YoY')
       ),
     ),
 
@@ -1026,7 +1026,7 @@ function App() {
           ),
         ),
         React.createElement('div', { className: 'header-badge' },
-          React.createElement('span', { className: 'q1-badge' }, 'Q1 2026 Data • Jan – Mar 2026'),
+          React.createElement('span', { className: 'q1-badge' }, 'Updated April 19, 2026'),
         ),
       ),
     ),
@@ -1052,7 +1052,7 @@ function App() {
     // Footer
     React.createElement('footer', { className: 'footer' },
       React.createElement('div', { className: 'container' },
-        'Data sources: Redfin, Realtor.com, Zillow, NC REALTORS\u00AE, Bankrate \u2022 Q1 2026'
+        'Data sources: Redfin, Realtor.com, Zillow, NC REALTORS\u00AE, Bankrate \u2022 Updated April 19, 2026'
       )
     )
   );
