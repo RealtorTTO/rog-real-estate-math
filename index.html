@@ -194,6 +194,7 @@ import {
 const MARKETS = [
   { name: 'Winston-Salem', county: 'Forsyth', median: 295, yoy: 5.7, dom: 37, supply: 3.8, type: "Seller's", rent: 1650, taxRate: 0.5352, stl: 0.978, ap: 3.6 },
   { name: 'Greensboro', county: 'Guilford', median: 289, yoy: 3.1, dom: 46, supply: 2.5, type: "Seller's", rent: 1700, taxRate: 0.7305, stl: 0.975, ap: 5.0 },
+  { name: 'Mocksville / Davie', county: 'Davie', median: 325, yoy: 9.0, dom: 46, supply: 3.5, type: "Seller's", rent: 1400, taxRate: 0.6486, stl: 0.965, ap: 4.0 },
   { name: 'Reidsville', county: 'Rockingham', median: 232, yoy: 1.8, dom: 79, supply: 3.7, type: "Seller's", rent: 1000, taxRate: 0.5801, stl: 0.965, ap: 3.5 },
   { name: 'Wilkesboro', county: 'Wilkes', median: 285, yoy: -1.8, dom: 59, supply: 3.8, type: 'Balanced', rent: 1025, taxRate: 0.61, stl: 0.955, ap: 2.5 },
   { name: 'Boone', county: 'Watauga', median: 511, yoy: -14.5, dom: 61, supply: 5.1, type: 'Balanced', rent: 2200, taxRate: 0.42, stl: 0.945, ap: 3.0 },
@@ -261,8 +262,8 @@ function Dashboard() {
   const supplyData = MARKETS.map(m => ({ name: m.name, value: m.supply }));
 
   return React.createElement('div', { className: 'container' },
-    React.createElement('h2', { className: 'page-title' }, 'Market Dashboard — All 9 Regions'),
-    React.createElement('p', { className: 'page-subtitle' }, 'All ROG Results office markets • Updated July 5, 2026'),
+    React.createElement('h2', { className: 'page-title' }, 'Market Dashboard — All 10 Regions'),
+    React.createElement('p', { className: 'page-subtitle' }, 'All ROG Results office markets • Updated July 8, 2026'),
 
     // KPI Cards
     React.createElement('div', { className: 'kpi-row' },
@@ -1026,7 +1027,7 @@ function App() {
           ),
         ),
         React.createElement('div', { className: 'header-badge' },
-          React.createElement('span', { className: 'q1-badge' }, 'Updated July 5, 2026 • May Data'),
+          React.createElement('span', { className: 'q1-badge' }, 'Updated July 8, 2026 • May Data'),
         ),
       ),
     ),
@@ -1052,7 +1053,7 @@ function App() {
     // Footer
     React.createElement('footer', { className: 'footer' },
       React.createElement('div', { className: 'container' },
-        'Data sources: Redfin, Realtor.com, Zillow, NC REALTORS\u00AE, Freddie Mac PMMS \u2022 Updated July 5, 2026'
+        'Data sources: Redfin, Realtor.com, Zillow, NC REALTORS\u00AE, Freddie Mac PMMS \u2022 Updated July 8, 2026'
       )
     )
   );
