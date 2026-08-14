@@ -192,19 +192,19 @@ import {
 
 // ===== MARKET DATA =====
 const MARKETS = [
-  { name: 'Winston-Salem', county: 'Forsyth', median: 314, yoy: -5.7, dom: 40, supply: 3.1, type: 'Balanced', rent: 1650, taxRate: 0.5352, stl: 0.982, ap: 3.0 },
-  { name: 'Greensboro', county: 'Guilford', median: 323, yoy: -5.0, dom: 43, supply: 3.0, type: 'Balanced', rent: 1700, taxRate: 0.7305, stl: 0.986, ap: 4.0 },
-  { name: 'Davie County', county: 'Davie', median: 359, yoy: 12.2, dom: 32, supply: 2.4, type: "Seller's", rent: 1400, taxRate: 0.6486, stl: 0.983, ap: 4.5 },
-  { name: 'Reidsville', county: 'Rockingham', median: 246, yoy: 2.6, dom: 50, supply: 4.0, type: 'Balanced', rent: 1000, taxRate: 0.5801, stl: 0.985, ap: 2.5 },
-  { name: 'Wilkesboro', county: 'Wilkes', median: 285, yoy: -1.8, dom: 59, supply: 6.0, type: "Buyer's", rent: 1025, taxRate: 0.61, stl: 0.953, ap: 2.5 },
-  { name: 'Boone', county: 'Watauga', median: 618, yoy: -4.9, dom: 57, supply: 6.5, type: "Buyer's", rent: 2200, taxRate: 0.42, stl: 0.953, ap: 3.0 },
-  { name: 'Banner Elk', county: 'Avery', median: 615, yoy: 2.0, dom: 56, supply: 7.0, type: "Buyer's", rent: 1750, taxRate: 0.40, stl: 0.952, ap: 2.5 },
-  { name: 'West Jefferson', county: 'Ashe', median: 475, yoy: 5.0, dom: 71, supply: 5.5, type: "Buyer's", rent: 1600, taxRate: 0.44, stl: 0.986, ap: 2.5 },
-  { name: 'Raleigh', county: 'Wake', median: 494, yoy: -1.3, dom: 31, supply: 2.7, type: "Seller's", rent: 1640, taxRate: 0.6570, stl: 0.988, ap: 3.0 },
-  { name: 'Elkin / Surry', county: 'Surry', median: 261, yoy: -1.5, dom: 41, supply: 3.8, type: 'Balanced', rent: 950, taxRate: 0.56, stl: 0.952, ap: 2.5 },
+  { name: 'Winston-Salem', county: 'Forsyth', median: 314, yoy: -5.7, dom: 40, supply: 3.6, type: 'Balanced', rent: 1650, taxRate: 0.5352, stl: 0.981, ap: 3.0 },
+  { name: 'Greensboro', county: 'Guilford', median: 323, yoy: -5.0, dom: 43, supply: 3.6, type: 'Balanced', rent: 1700, taxRate: 0.7305, stl: 0.977, ap: 4.0 },
+  { name: 'Davie County', county: 'Davie', median: 359, yoy: 12.2, dom: 32, supply: 3.3, type: "Seller's", rent: 1400, taxRate: 0.6486, stl: 0.972, ap: 4.5 },
+  { name: 'Reidsville', county: 'Rockingham', median: 246, yoy: 2.6, dom: 50, supply: 3.1, type: 'Balanced', rent: 1000, taxRate: 0.5801, stl: 0.972, ap: 2.5 },
+  { name: 'Wilkesboro', county: 'Wilkes', median: 305, yoy: 7.0, dom: 46, supply: 4.9, type: 'Balanced', rent: 1025, taxRate: 0.61, stl: 0.961, ap: 2.5 },
+  { name: 'Boone', county: 'Watauga', median: 618, yoy: -4.9, dom: 57, supply: 7.3, type: "Buyer's", rent: 2200, taxRate: 0.42, stl: 0.970, ap: 3.0 },
+  { name: 'Banner Elk', county: 'Avery', median: 615, yoy: 2.0, dom: 56, supply: 10.5, type: "Buyer's", rent: 1750, taxRate: 0.40, stl: 0.950, ap: 2.5 },
+  { name: 'West Jefferson', county: 'Ashe', median: 501, yoy: 5.0, dom: 71, supply: 8.5, type: "Buyer's", rent: 1600, taxRate: 0.44, stl: 0.960, ap: 2.5 },
+  { name: 'Raleigh', county: 'Wake', median: 494, yoy: -1.3, dom: 31, supply: 3.3, type: "Seller's", rent: 1640, taxRate: 0.6570, stl: 0.988, ap: 3.0 },
+  { name: 'Elkin / Surry', county: 'Surry', median: 261, yoy: -1.5, dom: 41, supply: 5.7, type: 'Balanced', rent: 950, taxRate: 0.56, stl: 0.952, ap: 2.5 },
 ];
 
-const RATE = 6.69;
+const RATE = 6.67;
 const TABS = [
   { id: 'dashboard', label: '📊 Dashboard' },
   { id: 'appreciation', label: '📈 Appreciation' },
@@ -263,29 +263,29 @@ function Dashboard() {
 
   return React.createElement('div', { className: 'container' },
     React.createElement('h2', { className: 'page-title' }, 'Market Dashboard — All 10 Regions'),
-    React.createElement('p', { className: 'page-subtitle' }, 'All ROG Results office markets • Updated August 9, 2026'),
+    React.createElement('p', { className: 'page-subtitle' }, 'All ROG Results office markets • Updated August 16, 2026'),
 
     // KPI Cards
     React.createElement('div', { className: 'kpi-row' },
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, '30-Yr Rate'),
-        React.createElement('div', { className: 'kpi-value' }, '6.69%'),
-        React.createElement('div', { className: 'kpi-delta green' }, '-4 bps from peak')
+        React.createElement('div', { className: 'kpi-value' }, '6.67%'),
+        React.createElement('div', { className: 'kpi-delta green' }, '-6 bps from peak')
       ),
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, 'NC Median'),
-        React.createElement('div', { className: 'kpi-value' }, '$382K'),
-        React.createElement('div', { className: 'kpi-delta green' }, '+1.5% YoY')
+        React.createElement('div', { className: 'kpi-value' }, '$375K'),
+        React.createElement('div', { className: 'kpi-delta green' }, '0.0% YoY')
       ),
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, 'NC Supply'),
-        React.createElement('div', { className: 'kpi-value' }, '5.86 mo'),
-        React.createElement('div', { className: 'kpi-delta green' }, '+5.0% YoY')
+        React.createElement('div', { className: 'kpi-value' }, '6.03 mo'),
+        React.createElement('div', { className: 'kpi-delta green' }, '+6.2% YoY')
       ),
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, 'NC Avg DOM'),
-        React.createElement('div', { className: 'kpi-value' }, '62 days'),
-        React.createElement('div', { className: 'kpi-delta red' }, '+21.6% YoY')
+        React.createElement('div', { className: 'kpi-value' }, '63 days'),
+        React.createElement('div', { className: 'kpi-delta red' }, '+23.5% YoY')
       ),
     ),
 
@@ -1027,7 +1027,7 @@ function App() {
           ),
         ),
         React.createElement('div', { className: 'header-badge' },
-          React.createElement('span', { className: 'q1-badge' }, 'Updated August 9, 2026 • June Data'),
+          React.createElement('span', { className: 'q1-badge' }, 'Updated August 16, 2026 • July Data'),
         ),
       ),
     ),
@@ -1053,7 +1053,7 @@ function App() {
     // Footer
     React.createElement('footer', { className: 'footer' },
       React.createElement('div', { className: 'container' },
-        'Data sources: Redfin, Realtor.com, Zillow, NC REALTORS\u00AE, Freddie Mac PMMS \u2022 Updated August 9, 2026'
+        'Data sources: Redfin, Realtor.com, Zillow, NC REALTORS\u00AE, Freddie Mac PMMS \u2022 Updated August 16, 2026'
       )
     )
   );
