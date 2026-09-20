@@ -204,7 +204,7 @@ const MARKETS = [
   { name: 'Elkin / Surry', county: 'Surry', median: 270, yoy: 3.0, dom: 45, supply: 4.5, type: 'Balanced', rent: 950, taxRate: 0.56, stl: 0.959, ap: 2.5 },
 ];
 
-const RATE = 6.76;
+const RATE = 6.95;
 const TABS = [
   { id: 'dashboard', label: '📊 Dashboard' },
   { id: 'appreciation', label: '📈 Appreciation' },
@@ -263,14 +263,14 @@ function Dashboard() {
 
   return React.createElement('div', { className: 'container' },
     React.createElement('h2', { className: 'page-title' }, 'Market Dashboard — All 10 Regions'),
-    React.createElement('p', { className: 'page-subtitle' }, 'All ROG Results office markets • Updated September 12, 2026'),
+    React.createElement('p', { className: 'page-subtitle' }, 'All ROG Results office markets • Updated September 20, 2026'),
 
     // KPI Cards
     React.createElement('div', { className: 'kpi-row' },
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, '30-Yr Rate'),
-        React.createElement('div', { className: 'kpi-value' }, '6.76%'),
-        React.createElement('div', { className: 'kpi-delta red' }, '52-week high')
+        React.createElement('div', { className: 'kpi-value' }, '6.95%'),
+        React.createElement('div', { className: 'kpi-delta red' }, '20-month high')
       ),
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, 'NC Median'),
@@ -1027,7 +1027,7 @@ function App() {
           ),
         ),
         React.createElement('div', { className: 'header-badge' },
-          React.createElement('span', { className: 'q1-badge' }, 'Updated September 12, 2026 • August Data'),
+          React.createElement('span', { className: 'q1-badge' }, 'Updated September 20, 2026 • August Data'),
         ),
       ),
     ),
@@ -1053,7 +1053,7 @@ function App() {
     // Footer
     React.createElement('footer', { className: 'footer' },
       React.createElement('div', { className: 'container' },
-        'Data sources: Redfin, Realtor.com, Zillow, NC REALTORS\u00AE, Freddie Mac PMMS \u2022 Updated September 12, 2026'
+        'Data sources: Redfin, Realtor.com, Zillow, NC REALTORS\u00AE, Freddie Mac PMMS \u2022 Updated September 20, 2026'
       )
     )
   );
