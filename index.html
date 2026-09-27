@@ -146,6 +146,10 @@ body.client-mode .copy-btn { display: none !important; }
 }
 @media (max-width: 600px) {
   .kpi-row { grid-template-columns: 1fr; }
+  .header-inner { flex-direction: column; align-items: stretch; gap: 16px; }
+  .header-controls { flex-wrap: wrap; justify-content: space-between; }
+  .header-rate { text-align: left; }
+  .share-client-btn { margin-left: 0; }
   .header-title { font-size: 32px; }
   .header-rate-value { font-size: 28px; }
   .nav-btn { padding: 12px 14px; font-size: 13px; }
@@ -192,19 +196,20 @@ import {
 
 // ===== MARKET DATA =====
 const MARKETS = [
-  { name: 'Winston-Salem', county: 'Forsyth', median: 305, yoy: -5.7, dom: 45, supply: 3.7, type: 'Balanced', rent: 1650, taxRate: 0.5352, stl: 0.988, ap: 3.0 },
-  { name: 'Greensboro', county: 'Guilford', median: 300, yoy: -12.6, dom: 46, supply: 3.4, type: 'Balanced', rent: 1700, taxRate: 0.7305, stl: 0.978, ap: 4.0 },
-  { name: 'Davie County', county: 'Davie', median: 370, yoy: 15.0, dom: 50, supply: 3.5, type: "Seller's", rent: 1400, taxRate: 0.6486, stl: 0.976, ap: 4.5 },
-  { name: 'Reidsville', county: 'Rockingham', median: 245, yoy: -9.0, dom: 49, supply: 5.9, type: 'Balanced', rent: 1000, taxRate: 0.5801, stl: 0.962, ap: 2.5 },
-  { name: 'Wilkesboro', county: 'Wilkes', median: 275, yoy: -8.0, dom: 50, supply: 8.0, type: "Buyer's", rent: 1025, taxRate: 0.61, stl: 0.950, ap: 2.5 },
-  { name: 'Boone', county: 'Watauga', median: 570, yoy: -4.8, dom: 81, supply: 10.4, type: "Buyer's", rent: 2200, taxRate: 0.42, stl: 0.959, ap: 3.0 },
-  { name: 'Banner Elk', county: 'Avery', median: 500, yoy: -10.0, dom: 85, supply: 9.0, type: "Buyer's", rent: 1750, taxRate: 0.40, stl: 0.942, ap: 2.5 },
-  { name: 'West Jefferson', county: 'Ashe', median: 420, yoy: 1.0, dom: 85, supply: 9.0, type: "Buyer's", rent: 1600, taxRate: 0.44, stl: 0.948, ap: 2.5 },
-  { name: 'Raleigh', county: 'Wake', median: 458, yoy: -6.4, dom: 47, supply: 3.4, type: "Seller's", rent: 1640, taxRate: 0.6570, stl: 0.985, ap: 3.0 },
-  { name: 'Elkin / Surry', county: 'Surry', median: 270, yoy: 3.0, dom: 45, supply: 4.5, type: 'Balanced', rent: 950, taxRate: 0.56, stl: 0.959, ap: 2.5 },
+  { name: 'Winston-Salem', county: 'Forsyth', regionId: 2040, median: 304.979, yoy: -5.7, dom: 45, sold: 436, rent: 1650, taxRate: 0.5352, ap: 3.0 },
+  { name: 'Greensboro', county: 'Guilford', regionId: 2047, median: 300.245, yoy: -12.6, dom: 46, sold: 563, rent: 1700, taxRate: 0.7305, ap: 4.0 },
+  { name: 'Davie County', county: 'Davie', regionId: 2036, median: 374.223, yoy: 18.6, dom: 51, sold: 57, rent: 1400, taxRate: 0.6486, ap: 4.5 },
+  { name: 'Reidsville', county: 'Rockingham', regionId: 2085, median: 229.233, yoy: -13.5, dom: 49, sold: 90, rent: 1000, taxRate: 0.5801, ap: 2.5 },
+  { name: 'Wilkesboro', county: 'Wilkes', regionId: 2103, median: 256.143, yoy: -27.5, dom: 55, sold: 40, rent: 1025, taxRate: 0.61, ap: 2.5 },
+  { name: 'Boone', county: 'Watauga', regionId: 2101, median: 570.092, yoy: -4.8, dom: 81, sold: 99, rent: 2200, taxRate: 0.42, ap: 3.0 },
+  { name: 'Banner Elk', county: 'Avery', regionId: 2012, median: 416.107, yoy: -24.5, dom: 96, sold: 54, rent: 1750, taxRate: 0.40, ap: 2.5 },
+  { name: 'West Jefferson', county: 'Ashe', regionId: 2011, median: 403.649, yoy: -0.82, dom: 99, sold: 33, rent: 1600, taxRate: 0.44, ap: 2.5 },
+  { name: 'Raleigh', county: 'Wake', regionId: 2098, median: 458.466, yoy: -6.4, dom: 47, sold: 1484, rent: 1640, taxRate: 0.6570, ap: 3.0 },
+  { name: 'Elkin / Surry', county: 'Surry', regionId: 2092, median: 264.116, yoy: -2.5, dom: 51, sold: 50, rent: 950, taxRate: 0.56, ap: 2.5 },
 ];
 
-const RATE = 6.95;
+const RATE = 7.03;
+const marketSource = m => `https://www.redfin.com/county/${m.regionId}/NC/${m.county}-County/housing-market`;
 const TABS = [
   { id: 'dashboard', label: '📊 Dashboard' },
   { id: 'appreciation', label: '📈 Appreciation' },
@@ -259,33 +264,44 @@ function Dashboard() {
   const priceData = MARKETS.map(m => ({ name: m.name, value: m.median }));
   const domData = MARKETS.map(m => ({ name: m.name, value: m.dom }));
   const yoyData = MARKETS.map(m => ({ name: m.name, value: m.yoy }));
-  const supplyData = MARKETS.map(m => ({ name: m.name, value: m.supply }));
+  const soldData = MARKETS.map(m => ({ name: m.name, value: m.sold }));
 
   return React.createElement('div', { className: 'container' },
     React.createElement('h2', { className: 'page-title' }, 'Market Dashboard — All 10 Regions'),
-    React.createElement('p', { className: 'page-subtitle' }, 'All ROG Results office markets • Updated September 20, 2026'),
+    React.createElement('p', { className: 'page-subtitle' }, 'All ROG Results office markets • Checked September 27, 2026'),
+    React.createElement('div', { className: 'card', style: { marginBottom: 24, fontSize: 14, lineHeight: 1.65 } },
+      React.createElement('strong', null, 'Weekly rate update; latest county reporting period ends August 2026. '),
+      'County prices are Redfin three-month rolling medians, not city-only values or one-week changes. ',
+      'September 27 correction: previously hand-blended county values have been replaced with published figures. ',
+      'County supply and buyer/seller labels are withheld because the earlier calculations mixed reporting windows. ',
+      'Small sales samples can shift the median; these changes do not measure the value change of an individual home.'
+    ),
 
     // KPI Cards
     React.createElement('div', { className: 'kpi-row' },
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, '30-Yr Rate'),
-        React.createElement('div', { className: 'kpi-value' }, '6.95%'),
-        React.createElement('div', { className: 'kpi-delta red' }, '20-month high')
+        React.createElement('div', { className: 'kpi-value' }, RATE.toFixed(2) + '%'),
+        React.createElement('div', { className: 'kpi-delta red' }, '+8 bps week over week'),
+        React.createElement('a', { href: 'https://www.freddiemac.com/pmms', target: '_blank', rel: 'noopener noreferrer' }, 'PMMS • September 24')
       ),
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, 'NC Median'),
         React.createElement('div', { className: 'kpi-value' }, '$375K'),
-        React.createElement('div', { className: 'kpi-delta green' }, '+0.2% YoY')
+        React.createElement('div', { className: 'kpi-delta green' }, '+0.2% YoY • August'),
+        React.createElement('a', { href: 'https://www.ncrealtors.org/wp-content/uploads/August-2026-Housing-Report.pdf', target: '_blank', rel: 'noopener noreferrer' }, 'NC REALTORS®')
       ),
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, 'NC Supply'),
         React.createElement('div', { className: 'kpi-value' }, '5.81 mo'),
-        React.createElement('div', { className: 'kpi-delta green' }, '+1.3% YoY')
+        React.createElement('div', { className: 'kpi-delta' }, 'August • NC REALTORS®'),
+        React.createElement('a', { href: 'https://www.ncrealtors.org/wp-content/uploads/August-2026-Housing-Report.pdf', target: '_blank', rel: 'noopener noreferrer' }, 'State report')
       ),
       React.createElement('div', { className: 'kpi-card' },
-        React.createElement('div', { className: 'kpi-label' }, 'NC Avg DOM'),
+        React.createElement('div', { className: 'kpi-label' }, 'NC Median Listing DOM'),
         React.createElement('div', { className: 'kpi-value' }, '66 days'),
-        React.createElement('div', { className: 'kpi-delta red' }, '+23.5% YoY')
+        React.createElement('div', { className: 'kpi-delta red' }, '+3 days vs July'),
+        React.createElement('a', { href: 'https://fred.stlouisfed.org/series/MEDDAYONMARNC', target: '_blank', rel: 'noopener noreferrer' }, 'Realtor.com via FRED • August')
       ),
     ),
 
@@ -337,15 +353,15 @@ function Dashboard() {
         )
       ),
 
-      // Months of Supply
+      // Source-reported sales counts; do not derive supply from mixed windows.
       React.createElement('div', { className: 'card' },
-        React.createElement('div', { className: 'card-title' }, 'Months of Supply'),
+        React.createElement('div', { className: 'card-title' }, 'Homes Sold (Source-Reported August Count)'),
         React.createElement(ResponsiveContainer, { width: '100%', height: 300 },
-          React.createElement(BarChart, { data: supplyData, layout: 'vertical', margin: { top: 5, right: 30, left: 80, bottom: 5 } },
+          React.createElement(BarChart, { data: soldData, layout: 'vertical', margin: { top: 5, right: 30, left: 80, bottom: 5 } },
             React.createElement(CartesianGrid, { strokeDasharray: '3 3', stroke: '#f0f0f0' }),
             React.createElement(XAxis, { type: 'number', fontSize: 12 }),
             React.createElement(YAxis, { type: 'category', dataKey: 'name', width: 90, fontSize: 11 }),
-            React.createElement(Tooltip, { content: React.createElement(CustomTooltip, { suffix: ' mo' }) }),
+            React.createElement(Tooltip, { content: React.createElement(CustomTooltip, { suffix: ' homes' }) }),
             React.createElement(Bar, { dataKey: 'value', fill: '#2563eb', radius: [0, 4, 4, 0], barSize: 20 })
           )
         )
@@ -359,7 +375,7 @@ function Dashboard() {
         React.createElement('table', null,
           React.createElement('thead', null,
             React.createElement('tr', null,
-              ['Market', 'County', 'Median', 'YoY', 'DOM', 'Supply', 'Type'].map(h =>
+              ['Market', 'County', 'Median', 'YoY', 'DOM', 'Homes Sold', 'Source'].map(h =>
                 React.createElement('th', { key: h }, h)
               )
             )
@@ -369,11 +385,11 @@ function Dashboard() {
               React.createElement('tr', { key: m.name },
                 React.createElement('td', { style: { fontWeight: 600 } }, m.name),
                 React.createElement('td', null, m.county),
-                React.createElement('td', null, fmtK(m.median)),
+                React.createElement('td', null, fmt(m.median * 1000)),
                 React.createElement('td', { className: m.yoy >= 0 ? 'green' : 'red' }, fmtPct(m.yoy)),
                 React.createElement('td', null, m.dom + ' days'),
-                React.createElement('td', null, m.supply.toFixed(1) + ' mo'),
-                React.createElement('td', null, typeBadge(m.type)),
+                React.createElement('td', null, m.sold.toLocaleString()),
+                React.createElement('td', null, React.createElement('a', { href: marketSource(m), target: '_blank', rel: 'noopener noreferrer' }, 'Redfin • Aug')),
               )
             )
           )
@@ -408,7 +424,7 @@ function Appreciation() {
     return rows;
   }, [price, rate, years]);
 
-  const scriptText = `"If you purchased a home in ${market.name} at the current median of ${fmt(price)}, and it appreciates at ${rate}% per year — which is in line with recent trends — in ${years} years your home could be worth ${fmt(data[years].value)}. That's ${fmt(data[years].equity)} in equity growth, just from natural market appreciation. Real estate remains one of the most reliable long-term wealth-building tools."`;
+  const scriptText = `"For a ${fmt(price)} home in ${market.name}, this hypothetical ${rate}% annual appreciation scenario produces a value of ${fmt(data[years].value)} after ${years} years, a modeled change of ${fmt(data[years].equity)}. This is an assumption, not a forecast or a promise. Local prices can fall as well as rise, and transaction and ownership costs affect your net outcome."`;
 
   return React.createElement('div', { className: 'container' },
     React.createElement('h2', { className: 'page-title' }, 'Appreciation Calculator'),
@@ -453,7 +469,7 @@ function Appreciation() {
       ),
       React.createElement('div', { className: 'result-card' },
         React.createElement('div', { className: 'result-label' }, 'Total Return'),
-        React.createElement('div', { className: 'result-value green' }, ((data[years].value / price - 1) * 100).toFixed(1) + '%')
+        React.createElement('div', { className: 'result-value green' }, price > 0 ? ((data[years].value / price - 1) * 100).toFixed(1) + '%' : 'N/A')
       ),
     ),
 
@@ -553,7 +569,7 @@ function CostOfWaiting() {
     { name: 'Added Rate Cost (1yr)', value: Math.round(Math.max(0, results.monthlyRateCost * 12)), fill: '#C5A95E' },
   ];
 
-  const scriptText = `"If you wait ${months} months to buy, here's what it could cost you: You'd spend ${fmt(results.rentPaid)} in rent that builds zero equity. The home price could increase by ${fmt(Math.round(results.priceIncrease))} based on current trends. And if rates move up just ${rateInc}%, your monthly payment would go from ${fmt(Math.round(results.currentPayment))} to ${fmt(Math.round(results.futurePayment))} — that's ${fmt(Math.round(results.monthlyRateCost))} more per month. The total cost of waiting? Approximately ${fmt(Math.round(results.totalCost))}. Every month you wait is money you're leaving on the table."`;
+  const scriptText = `"Let's compare scenarios rather than predict the market. Over ${months} months, rent in this example totals ${fmt(results.rentPaid)}. With the selected price and rate assumptions, monthly principal and interest changes from ${fmt(Math.round(results.currentPayment))} to ${fmt(Math.round(results.futurePayment))}, using 5% down. Prices and rates can move either direction. This simplified comparison excludes some ownership costs and does not establish that buying now is better for you. Let's review your budget, time horizon, and lender quotes."`;
 
   return React.createElement('div', { className: 'container' },
     React.createElement('h2', { className: 'page-title' }, 'Cost of Waiting Calculator'),
@@ -1027,7 +1043,7 @@ function App() {
           ),
         ),
         React.createElement('div', { className: 'header-badge' },
-          React.createElement('span', { className: 'q1-badge' }, 'Updated September 20, 2026 • August Data'),
+          React.createElement('span', { className: 'q1-badge' }, 'Checked September 27, 2026 • Rate Sept 24 • County period ends Aug'),
         ),
       ),
     ),
@@ -1048,12 +1064,17 @@ function App() {
     ),
 
     // Content
-    React.createElement('main', { className: 'content' }, renderTab()),
+    React.createElement('main', { className: 'content' },
+      renderTab(),
+      React.createElement('p', { className: 'container', style: { fontSize: 13, lineHeight: 1.65, marginTop: 24, color: '#555' } },
+        'Calculator assumptions: appreciation, rent, tax rates, and future-rate changes are editable or carried-forward scenario inputs, not newly verified market forecasts. PMMS is a national benchmark, not an individual loan quote. Review taxes, insurance, HOA, maintenance, financing and transaction costs with your advisors. Refinancing and future appreciation are not guaranteed.'
+      )
+    ),
 
     // Footer
     React.createElement('footer', { className: 'footer' },
       React.createElement('div', { className: 'container' },
-        'Data sources: Redfin, Realtor.com, Zillow, NC REALTORS\u00AE, Freddie Mac PMMS \u2022 Updated September 20, 2026'
+        'Verified sources: Redfin county pages, NC REALTORS\u00AE, Realtor.com via FRED, Freddie Mac PMMS \u2022 Checked September 27, 2026'
       )
     )
   );
