@@ -1,4 +1,20 @@
-# Real Estate Math: September 27, 2026 verification
+# Real Estate Math: October 4, 2026 verification
+
+## October 4 weekly refresh
+
+The weekly Freddie Mac 30-year rate is 7.28% for October 1, compared with 7.03% in the previous week, a 25-basis-point increase. Retrieved through the finance provider's USA3YMR series, attributed to [Freddie Mac](https://www.freddiemac.com/pmms). Provider receipt: `macro_snapshot_mortgage__United_States_d79677.csv`, row USA3YMR, latest_value 7.28, latest_value_date 2026-10-01, previous_value 7.03.
+
+North Carolina median listing time advanced to September: 69 days, versus 66 in August. The [Realtor.com series via FRED](https://fred.stlouisfed.org/series/MEDDAYONMARNC) was updated October 1, 2026. This is a monthly listing metric, not a weekly change or county closed-sale DOM.
+
+The [NC REALTORS report index](https://www.ncrealtors.org/resources/news-data/market-data/) still lists August as its latest report. State median and inventory remain $375,000 and 5.81 months, verified against the [August report](https://www.ncrealtors.org/wp-content/uploads/August-2026-Housing-Report.pdf).
+
+All ten county headline datasets below were rechecked on October 4. Published medians, price YoY, DOM, and sales counts match the September 27 verified dataset, with the price reporting window ending August. Older cached versions were rejected: a fresh fetch confirmed Wilkes, and browser-rendered pages confirmed Davie, Avery, Ashe and Surry. Some page titles say “as of September” while the actual headline data still says three months ending August; the data period, not the title, controls the tool's label.
+
+Calculated 30-year principal and interest on a $300,000 loan: $2,052.64 at 7.28%, versus $2,001.96 at 7.03%, an increase of $50.68 per month. Excludes taxes, insurance, HOA, PMI and other costs. Calculator defaults use the new rate; no appreciation, rent or tax defaults were refreshed.
+
+No county supply estimates or buyer/seller classifications were restored. Unchanged monthly data does not mean the market had no activity during the week.
+
+## September 27 verification history
 
 Checked September 27, 2026. The weekly mortgage rate changed; the latest verified county headline reporting period still ends August 2026.
 

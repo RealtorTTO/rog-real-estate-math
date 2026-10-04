@@ -208,7 +208,7 @@ const MARKETS = [
   { name: 'Elkin / Surry', county: 'Surry', regionId: 2092, median: 264.116, yoy: -2.5, dom: 51, sold: 50, rent: 950, taxRate: 0.56, ap: 2.5 },
 ];
 
-const RATE = 7.03;
+const RATE = 7.28;
 const marketSource = m => `https://www.redfin.com/county/${m.regionId}/NC/${m.county}-County/housing-market`;
 const TABS = [
   { id: 'dashboard', label: '📊 Dashboard' },
@@ -268,9 +268,9 @@ function Dashboard() {
 
   return React.createElement('div', { className: 'container' },
     React.createElement('h2', { className: 'page-title' }, 'Market Dashboard — All 10 Regions'),
-    React.createElement('p', { className: 'page-subtitle' }, 'All ROG Results office markets • Checked September 27, 2026'),
+    React.createElement('p', { className: 'page-subtitle' }, 'All ROG Results office markets • Checked October 4, 2026'),
     React.createElement('div', { className: 'card', style: { marginBottom: 24, fontSize: 14, lineHeight: 1.65 } },
-      React.createElement('strong', null, 'Weekly rate update; latest county reporting period ends August 2026. '),
+      React.createElement('strong', null, 'October 4 refresh: mortgage rate October 1; NC listing DOM September; county reporting period ends August 2026. '),
       'County prices are Redfin three-month rolling medians, not city-only values or one-week changes. ',
       'September 27 correction: previously hand-blended county values have been replaced with published figures. ',
       'County supply and buyer/seller labels are withheld because the earlier calculations mixed reporting windows. ',
@@ -282,8 +282,8 @@ function Dashboard() {
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, '30-Yr Rate'),
         React.createElement('div', { className: 'kpi-value' }, RATE.toFixed(2) + '%'),
-        React.createElement('div', { className: 'kpi-delta red' }, '+8 bps week over week'),
-        React.createElement('a', { href: 'https://www.freddiemac.com/pmms', target: '_blank', rel: 'noopener noreferrer' }, 'PMMS • September 24')
+        React.createElement('div', { className: 'kpi-delta red' }, '+25 bps week over week'),
+        React.createElement('a', { href: 'https://www.freddiemac.com/pmms', target: '_blank', rel: 'noopener noreferrer' }, 'PMMS • October 1')
       ),
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, 'NC Median'),
@@ -299,9 +299,9 @@ function Dashboard() {
       ),
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, 'NC Median Listing DOM'),
-        React.createElement('div', { className: 'kpi-value' }, '66 days'),
-        React.createElement('div', { className: 'kpi-delta red' }, '+3 days vs July'),
-        React.createElement('a', { href: 'https://fred.stlouisfed.org/series/MEDDAYONMARNC', target: '_blank', rel: 'noopener noreferrer' }, 'Realtor.com via FRED • August')
+        React.createElement('div', { className: 'kpi-value' }, '69 days'),
+        React.createElement('div', { className: 'kpi-delta red' }, '+3 days vs August'),
+        React.createElement('a', { href: 'https://fred.stlouisfed.org/series/MEDDAYONMARNC', target: '_blank', rel: 'noopener noreferrer' }, 'Realtor.com via FRED • September')
       ),
     ),
 
@@ -1043,7 +1043,7 @@ function App() {
           ),
         ),
         React.createElement('div', { className: 'header-badge' },
-          React.createElement('span', { className: 'q1-badge' }, 'Checked September 27, 2026 • Rate Sept 24 • County period ends Aug'),
+          React.createElement('span', { className: 'q1-badge' }, 'Checked October 4, 2026 • Rate Oct 1 • County period ends Aug'),
         ),
       ),
     ),
@@ -1074,7 +1074,7 @@ function App() {
     // Footer
     React.createElement('footer', { className: 'footer' },
       React.createElement('div', { className: 'container' },
-        'Verified sources: Redfin county pages, NC REALTORS\u00AE, Realtor.com via FRED, Freddie Mac PMMS \u2022 Checked September 27, 2026'
+        'Verified sources: Redfin county pages, NC REALTORS\u00AE, Realtor.com via FRED, Freddie Mac PMMS \u2022 Checked October 4, 2026'
       )
     )
   );
