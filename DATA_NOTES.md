@@ -1,4 +1,35 @@
-# Real Estate Math: October 4, 2026 verification
+# Real Estate Math: October 11, 2026 verification
+
+## October 11 weekly refresh
+
+The [Freddie Mac PMMS](https://www.freddiemac.com/pmms) 30-year benchmark is 7.40% dated October 8, versus 7.28% the previous week, an increase of 12 basis points. Finance provider receipt: `macro_snapshot_mortgage__United_States_d79677.csv`, row `USA3YMR`, latest_value 7.4, latest_value_date 2026-10-08, previous_value 7.28. Provenance metadata: `web/direct-files/90f83e88ba6a2d2ba1225a55f5e12dd5/38c57c77-6219-49f0-bc35-285082afc7c3/csv/882494ba_macro_snapshot_mortgage__United_States_d79677.csv.metadata.json`.
+
+The [September NC REALTORS report](https://www.ncrealtors.org/wp-content/uploads/September-2026-Housing-Report.pdf) is now published: median $370,000 (+0.7% YoY), 11,429 sales (-11% YoY), inventory 5.93 months. Against the prior [August report](https://www.ncrealtors.org/wp-content/uploads/August-2026-Housing-Report.pdf), median is $5,000 lower (-1.33%) and inventory is 0.12 months higher. These are monthly changes, not weekly.
+
+[NC median listing DOM](https://fred.stlouisfed.org/series/MEDDAYONMARNC) remains 69 days for September, versus 66 in August. No change to this metric from the October 4 tool.
+
+All ten Redfin county pages still label the median as the three months ending August 2026. They now display different values from the October 4 saved snapshot. Report these as changes to the recorded August figures, not measured October 4–11 market activity; no cause of the differences is established. The source narrative calls homes sold August sales. Browser-rendered pages verified nine counties; a fresh complete page fetch verified Avery. Exact-dollar medians below are published values, not manually rounded or smoothed.
+
+| County | Current median | Change vs Oct 4 display | Current YoY (previous) | DOM (previous) | August sold (previous) |
+|---|---:|---:|---:|---:|---:|
+| [Forsyth](https://www.redfin.com/county/2040/NC/Forsyth-County/housing-market) | $305,000 | +$21 | -5.6% (-5.7%) | 45 (45) | 419 (436) |
+| [Guilford](https://www.redfin.com/county/2047/NC/Guilford-County/housing-market) | $300,000 | -$245 | -12.7% (-12.6%) | 46 (46) | 542 (563) |
+| [Davie](https://www.redfin.com/county/2036/NC/Davie-County/housing-market) | $375,475 | +$1,252 | +19.2% (+18.6%) | 51 (51) | 54 (57) |
+| [Rockingham](https://www.redfin.com/county/2085/NC/Rockingham-County/housing-market) | $230,000 | +$767 | -13.8% (-13.5%) | 49 (49) | 85 (90) |
+| [Wilkes](https://www.redfin.com/county/2103/NC/Wilkes-County/housing-market) | $257,000 | +$857 | -27.3% (-27.5%) | 55 (55) | 38 (40) |
+| [Watauga](https://www.redfin.com/county/2101/NC/Watauga-County/housing-market) | $557,000 | -$13,092 | -7.0% (-4.8%) | 78 (81) | 97 (99) |
+| [Avery](https://www.redfin.com/county/2012/NC/Avery-County/housing-market) | $417,500 | +$1,393 | -24.2% (-24.5%) | 95 (96) | 51 (54) |
+| [Ashe](https://www.redfin.com/county/2011/NC/Ashe-County/housing-market) | $405,000 | +$1,351 | -0.49% (-0.82%) | 98 (99) | 31 (33) |
+| [Wake](https://www.redfin.com/county/2098/NC/Wake-County/housing-market) | $460,000 | +$1,534 | -6.1% (-6.4%) | 47 (47) | 1,437 (1,484) |
+| [Surry](https://www.redfin.com/county/2092/NC/Surry-County/housing-market) | $265,000 | +$884 | -1.9% (-2.5%) | 51 (51) | 47 (50) |
+
+Monthly principal and interest for a hypothetical $300,000, 30-year loan: $2,077.14 at 7.40% versus $2,052.64 at 7.28%, +$24.50. Calculated using payment = principal × monthly rate / (1 − (1 + monthly rate)^−360), from the [PMMS benchmarks](https://www.freddiemac.com/pmms); excludes taxes, insurance, HOA, PMI and fees. Calculator rate changed; appreciation, rent and tax defaults remain scenario assumptions.
+
+County supply and buyer/seller classifications remain withheld. No mismatched inventory/sales calculations were reintroduced.
+
+## Historical snapshots
+
+The sections below preserve prior checks for comparison; they are not the October 11 current values.
 
 ## October 4 weekly refresh
 
