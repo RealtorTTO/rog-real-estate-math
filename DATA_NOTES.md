@@ -1,4 +1,39 @@
-# Real Estate Math: October 11, 2026 verification
+# Real Estate Math: October 18, 2026 verification
+
+## October 18 weekly refresh
+
+Review interval: October 11–18, 2026. The weekly mortgage benchmark is unchanged; all ten county pages have advanced from the August reporting period stored on October 11 to September. County differences below are report-to-report changes, not seven-day market movements. The actual publication date within the review interval was not established.
+
+[Freddie Mac PMMS](https://www.freddiemac.com/pmms): 7.40% for October 15, versus 7.40% for the previous week, 0 basis points change. Finance provider row `USA3YMR`, latest_value_date `2026-10-15`, latest_value `7.4`, previous_value `7.4`. Receipt `macro_snapshot_mortgage__United_States_d79677.csv`; provenance `web/direct-files/69c0365a5f0575fc8819648a07999392/72462257-e72c-4f76-a03a-b8b86b2dc663/csv/882494ba_macro_snapshot_mortgage__United_States_d79677.csv.metadata.json`. A hypothetical $300,000, 30-year loan still has $2,077.14 monthly principal and interest at this benchmark, excluding tax, insurance, PMI, HOA and fees.
+
+The [NC REALTORS report index](https://www.ncrealtors.org/resources/news-data/market-data/) still lists September as latest. Its [September report](https://www.ncrealtors.org/wp-content/uploads/September-2026-Housing-Report.pdf) is unchanged: $370,000 median (+0.7% YoY), 11,429 sales (-11% YoY), 5.93 months inventory. The [Realtor.com/FRED NC listing DOM](https://fred.stlouisfed.org/series/MEDDAYONMARNC) remains 69 for September versus 66 in August, updated October 1. Neither state metric is a new weekly change.
+
+## County comparison: October 11 saved August values → October 18 September values
+
+Redfin describes prices as the three months ending September 2026. Homes sold are the September counts stated in page narratives. DOM uses the displayed headline number; some pages call it median in cards and average in prose. Do not mix these sales counts with active-listing snapshots to calculate supply. City labels in the tool represent county-wide data.
+
+| County and evidence | Median, August → September | Price YoY, August → September | DOM, August → September | Sold, August → September |
+|---|---:|---:|---:|---:|
+| [Forsyth](https://www.redfin.com/county/2040/NC/Forsyth-County/housing-market) | $305,000 → $309,308 | -5.6% → -1.8% | 45 → 51 | 419 → 378 |
+| [Guilford](https://www.redfin.com/county/2047/NC/Guilford-County/housing-market) | $300,000 → $304,568 | -12.7% → -1.8% | 46 → 40 | 542 → 479 |
+| [Davie](https://www.redfin.com/county/2036/NC/Davie-County/housing-market) | $375,475 → $322,421 | +19.2% → -7.9% | 51 → 61 | 54 → 63 |
+| [Rockingham](https://www.redfin.com/county/2085/NC/Rockingham-County/housing-market) | $230,000 → $240,050 | -13.8% → +3.7% | 49 → 56 | 85 → 97 |
+| [Wilkes](https://www.redfin.com/county/2103/NC/Wilkes-County/housing-market) | $257,000 → $258,921 | -27.3% → +4.2% | 55 → 79 | 38 → 33 |
+| [Watauga](https://www.redfin.com/county/2101/NC/Watauga-County/housing-market) | $557,000 → $583,694 | -7.0% → -6.2% | 78 → 97 | 97 → 100 |
+| [Avery](https://www.redfin.com/county/2012/NC/Avery-County/housing-market) | $417,500 → $476,434 | -24.2% → +36.1% | 95 → 115 | 51 → 56 |
+| [Ashe](https://www.redfin.com/county/2011/NC/Ashe-County/housing-market) | $405,000 → $498,834 | -0.49% → +17.4% | 98 → 88 | 31 → 39 |
+| [Wake](https://www.redfin.com/county/2098/NC/Wake-County/housing-market) | $460,000 → $463,962 | -6.1% → -0.22% | 47 → 47 | 1,437 → 1,342 |
+| [Surry](https://www.redfin.com/county/2092/NC/Surry-County/housing-market) | $265,000 → $276,880 | -1.9% → +6.5% | 51 → 73 | 47 → 53 |
+
+Fresh fetches verified Forsyth, Guilford, Davie, Rockingham and Surry. Fetch failures for Wilkes, Watauga, Avery, Ashe and Wake were resolved using their rendered browser pages. All current medians are exact published values without smoothing. Large swings in medians/YoY are not individual-property appreciation or recommended price adjustments; their causes were not established.
+
+Calculator rate stays unchanged. Market-linked price defaults update with the county medians. Appreciation, rent, tax and independent scenario defaults are carried forward, not newly verified forecasts. County supply and buyer/seller classifications remain withheld.
+
+QA scope: date/source labels, all ten exact county rows, all four calculator tabs, market selection, negative appreciation and zero purchase price, client-mode script hiding, and desktop/mobile rendering. Public Netlify deployment must be independently checked; GitHub push and preview deployment alone do not establish live production.
+
+## Prior verification history
+
+The following sections preserve older observations, not the October 18 current dataset.
 
 ## October 11 weekly refresh
 
