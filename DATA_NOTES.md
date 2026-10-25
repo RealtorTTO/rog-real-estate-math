@@ -1,4 +1,33 @@
-# Real Estate Math: October 18, 2026 verification
+# Real Estate Math: October 25, 2026 verification
+
+## October 25 weekly refresh
+
+Review interval: October 18–25. The [Freddie Mac](https://www.freddiemac.com/pmms) 30-year benchmark is 7.32% dated October 22, versus 7.40% October 15: down 8 basis points. The calculator RATE changed to 7.32. A hypothetical $300,000, 30-year mortgage has monthly principal and interest of $2,060.79 versus $2,077.14, saving $16.35; taxes, insurance, PMI, HOA and fees are excluded.
+
+Finance receipt: `macro_snapshot_mortgage__United_States_d79677.csv`, row `USA3YMR`, latest_value_date `2026-10-22`, latest_value `7.32`, previous_value `7.4`. Metadata: `web/direct-files/9149f6e0d4712a96acaa772e8bf0adef/180e886c-9349-42b8-b3bc-3d2a4ad5c473/csv/882494ba_macro_snapshot_mortgage__United_States_d79677.csv.metadata.json`.
+
+The [NC REALTORS index](https://www.ncrealtors.org/resources/news-data/market-data/) and [September report](https://www.ncrealtors.org/wp-content/uploads/September-2026-Housing-Report.pdf) still show September as latest: median $370,000 (+0.7% YoY), 11,429 sales (-11% YoY), 5.93 months inventory. [Realtor.com/FRED listing DOM](https://fred.stlouisfed.org/series/MEDDAYONMARNC) remains 69 for September versus 66 August, last updated October 1. These are unchanged published figures, not weekly metrics.
+
+All ten county prices, YoY, DOM and sold counts match the October 18 saved values. Avery was verified by fresh fetch; the other nine by rendered Redfin pages after fresh fetch failures. County reporting remains September; no October reporting period was observed. Prices are three-month rolling medians, while sales are the September counts in source narratives. Do not infer an absence of actual weekly market activity from unchanged published data.
+
+| County / source | Median | Price YoY | DOM | September sold | Change vs October 18 snapshot |
+|---|---:|---:|---:|---:|---|
+| [Forsyth](https://www.redfin.com/county/2040/NC/Forsyth-County/housing-market) | $309,308 | -1.8% | 51 | 378 | None |
+| [Guilford](https://www.redfin.com/county/2047/NC/Guilford-County/housing-market) | $304,568 | -1.8% | 40 | 479 | None |
+| [Davie](https://www.redfin.com/county/2036/NC/Davie-County/housing-market) | $322,421 | -7.9% | 61 | 63 | None |
+| [Rockingham](https://www.redfin.com/county/2085/NC/Rockingham-County/housing-market) | $240,050 | +3.7% | 56 | 97 | None |
+| [Wilkes](https://www.redfin.com/county/2103/NC/Wilkes-County/housing-market) | $258,921 | +4.2% | 79 | 33 | None |
+| [Watauga](https://www.redfin.com/county/2101/NC/Watauga-County/housing-market) | $583,694 | -6.2% | 97 | 100 | None |
+| [Avery](https://www.redfin.com/county/2012/NC/Avery-County/housing-market) | $476,434 | +36.1% | 115 | 56 | None |
+| [Ashe](https://www.redfin.com/county/2011/NC/Ashe-County/housing-market) | $498,834 | +17.4% | 88 | 39 | None |
+| [Wake](https://www.redfin.com/county/2098/NC/Wake-County/housing-market) | $463,962 | -0.22% | 47 | 1,342 | None |
+| [Surry](https://www.redfin.com/county/2092/NC/Surry-County/housing-market) | $276,880 | +6.5% | 73 | 53 | None |
+
+Dates updated in header, dashboard and footer; all mortgage-dependent calculator formulas use the new RATE. County arrays, appreciation/rent/tax assumptions, design and functionality remain unchanged. County supply and market-type classifications remain withheld. The public Netlify site is a separate deployment from the preview and GitHub source.
+
+## Historical verification records
+
+Everything below describes earlier checks and is retained for audit history.
 
 ## October 18 weekly refresh
 
