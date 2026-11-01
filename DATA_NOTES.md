@@ -1,4 +1,37 @@
-# Real Estate Math: October 25, 2026 verification
+# Real Estate Math: November 1, 2026 verification
+
+## November 1 weekly refresh
+
+Review interval: October 25–November 1. The [Freddie Mac](https://www.freddiemac.com/pmms) 30-year mortgage benchmark is 7.24% dated October 29, versus 7.32% October 22, down 8 basis points. The calculator RATE changed to 7.24. A hypothetical $300,000, 30-year loan has monthly principal and interest of $2,044.49 versus $2,060.79, saving $16.30 monthly. Taxes, insurance, PMI, HOA and fees are excluded; this is a benchmark illustration, not a lender quote.
+
+Finance receipt: `macro_snapshot_mortgage__United_States_d79677.csv`, row `USA3YMR`, latest_value_date `2026-10-29`, latest_value `7.24`, previous_value `7.32`. Metadata: `web/direct-files/777bba1d82f723c4a17e27a546b4a5a5/166bebd3-6181-428b-a20f-cc1462056851/csv/882494ba_macro_snapshot_mortgage__United_States_d79677.csv.metadata.json`.
+
+Fresh checks of the [NC REALTORS index](https://www.ncrealtors.org/resources/news-data/market-data/) and [September report](https://www.ncrealtors.org/wp-content/uploads/September-2026-Housing-Report.pdf) still show September as latest: median $370,000 (+0.7% YoY), 11,429 sales (-11% YoY), 5.93 months inventory. [Realtor.com/FRED listing DOM](https://fred.stlouisfed.org/series/MEDDAYONMARNC) remains 69 for September versus 66 August, last updated October 1; next release listed November 5. These are unchanged published monthly observations.
+
+All ten county pages were verified in a rendered browser after fresh fetch failures. Exact medians, price YoY, DOM and September sales match the October 25 snapshot. No October reporting period was observed. Redfin describes prices as three-month rolling medians ending September; homes sold are September totals stated in the page narrative. City labels represent countywide data. No weekly listings, pendings or closings dataset was retrieved; unchanged published data do not establish unchanged weekly market activity.
+
+| County / source | Median | Price YoY | DOM | September sold | Change vs October 25 snapshot |
+|---|---:|---:|---:|---:|---|
+| [Forsyth](https://www.redfin.com/county/2040/NC/Forsyth-County/housing-market) | $309,308 | -1.8% | 51 | 378 | None |
+| [Guilford](https://www.redfin.com/county/2047/NC/Guilford-County/housing-market) | $304,568 | -1.8% | 40 | 479 | None |
+| [Davie](https://www.redfin.com/county/2036/NC/Davie-County/housing-market) | $322,421 | -7.9% | 61 | 63 | None |
+| [Rockingham](https://www.redfin.com/county/2085/NC/Rockingham-County/housing-market) | $240,050 | +3.7% | 56 | 97 | None |
+| [Wilkes](https://www.redfin.com/county/2103/NC/Wilkes-County/housing-market) | $258,921 | +4.2% | 79 | 33 | None |
+| [Watauga](https://www.redfin.com/county/2101/NC/Watauga-County/housing-market) | $583,694 | -6.2% | 97 | 100 | None |
+| [Avery](https://www.redfin.com/county/2012/NC/Avery-County/housing-market) | $476,434 | +36.1% | 115 | 56 | None |
+| [Ashe](https://www.redfin.com/county/2011/NC/Ashe-County/housing-market) | $498,834 | +17.4% | 88 | 39 | None |
+| [Wake](https://www.redfin.com/county/2098/NC/Wake-County/housing-market) | $463,962 | -0.22% | 47 | 1,342 | None |
+| [Surry](https://www.redfin.com/county/2092/NC/Surry-County/housing-market) | $276,880 | +6.5% | 73 | 53 | None |
+
+Header, dashboard and footer check dates updated to November 1; mortgage source date updated to October 29. Mortgage-dependent calculators use the new RATE. County data, design, tax/rent/appreciation assumptions and independent scenario defaults remain unchanged. County supply and buyer/seller classifications remain withheld because matched-period evidence has not been established.
+
+Public Netlify check before release showed October 25, rate 7.32% dated October 22. Netlify was listed in connected context but had no callable tools; connector discovery returned no connection candidates. GitHub source and private preview are separate from production. Do not report production updated without a fresh public check.
+
+Local QA: all ten rows and four dashboard charts rendered; all four calculator tabs, market selection, range controls, price/rent edits, negative appreciation, zero price, copy feedback, client-link clipboard, client-mode hiding and agent restoration passed. No runtime page errors. Desktop and 375px mobile inspected; a transient chart width during resize settled to a 375px page without overflow. A source-link click opened Redfin, which redirected the sandbox browser to its rate-limit page; county research was separately verified in the cloud browser.
+
+## Historical verification records
+
+The sections below retain prior weekly observations, not new November data.
 
 ## October 25 weekly refresh
 
