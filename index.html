@@ -208,7 +208,7 @@ const MARKETS = [
   { name: 'Elkin / Surry', county: 'Surry', regionId: 2092, median: 276.880, yoy: 6.5, dom: 73, sold: 53, rent: 950, taxRate: 0.56, ap: 2.5 },
 ];
 
-const RATE = 7.24;
+const RATE = 7.18;
 const marketSource = m => `https://www.redfin.com/county/${m.regionId}/NC/${m.county}-County/housing-market`;
 const TABS = [
   { id: 'dashboard', label: '📊 Dashboard' },
@@ -268,10 +268,10 @@ function Dashboard() {
 
   return React.createElement('div', { className: 'container' },
     React.createElement('h2', { className: 'page-title' }, 'Market Dashboard — All 10 Regions'),
-    React.createElement('p', { className: 'page-subtitle' }, 'All ROG Results office markets • Checked November 1, 2026'),
+    React.createElement('p', { className: 'page-subtitle' }, 'All ROG Results office markets • Checked November 8, 2026'),
     React.createElement('div', { className: 'card', style: { marginBottom: 24, fontSize: 14, lineHeight: 1.65 } },
-      React.createElement('strong', null, 'November 1 refresh: mortgage rate October 29; NC state report, listing DOM and county reporting periods remain September 2026. '),
-      'Review window: October 25–November 1. The mortgage benchmark fell 8 basis points to 7.24%. All ten county medians, year-over-year changes, days on market and sales counts were rechecked and are unchanged from the October 25 snapshot. No new county reporting period was found; unchanged published figures do not mean no market activity occurred this week. ',
+      React.createElement('strong', null, 'November 8 refresh: mortgage rate November 5; NC state report and listing DOM advanced to October; county reporting periods remain September 2026. '),
+      'Review window: November 1–8. The mortgage benchmark fell 6 basis points to 7.18%. The October NC report shows a $368,990 median, 5.98 months of inventory and 10,421 sales. Statewide median listing time is 71 days, up 2 days from September. These state comparisons are monthly, not seven-day changes. All ten county medians, year-over-year changes, days on market and sales counts were rechecked and are unchanged from the November 1 snapshot. Unchanged published county figures do not mean no market activity occurred this week. ',
       'County prices are Redfin three-month rolling medians, not city-only values or one-week changes. ',
       'September 27 correction: previously hand-blended county values have been replaced with published figures. ',
       'County supply and buyer/seller labels are withheld because the earlier calculations mixed reporting windows. ',
@@ -283,26 +283,26 @@ function Dashboard() {
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, '30-Yr Rate'),
         React.createElement('div', { className: 'kpi-value' }, RATE.toFixed(2) + '%'),
-        React.createElement('div', { className: 'kpi-delta green' }, '−8 bps week over week'),
-        React.createElement('a', { href: 'https://www.freddiemac.com/pmms', target: '_blank', rel: 'noopener noreferrer' }, 'PMMS • October 29')
+        React.createElement('div', { className: 'kpi-delta green' }, '−6 bps week over week'),
+        React.createElement('a', { href: 'https://www.freddiemac.com/pmms', target: '_blank', rel: 'noopener noreferrer' }, 'PMMS • November 5')
       ),
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, 'NC Median'),
-        React.createElement('div', { className: 'kpi-value' }, '$370K'),
-        React.createElement('div', { className: 'kpi-delta green' }, '+0.7% YoY • September'),
-        React.createElement('a', { href: 'https://www.ncrealtors.org/wp-content/uploads/September-2026-Housing-Report.pdf', target: '_blank', rel: 'noopener noreferrer' }, 'NC REALTORS®')
+        React.createElement('div', { className: 'kpi-value' }, '$368,990'),
+        React.createElement('div', { className: 'kpi-delta red' }, '−0.4% YoY • October'),
+        React.createElement('a', { href: 'https://www.ncrealtors.org/wp-content/uploads/October-2026-Housing-Report.pdf', target: '_blank', rel: 'noopener noreferrer' }, 'NC REALTORS®')
       ),
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, 'NC Supply'),
-        React.createElement('div', { className: 'kpi-value' }, '5.93 mo'),
-        React.createElement('div', { className: 'kpi-delta' }, 'September • NC REALTORS®'),
-        React.createElement('a', { href: 'https://www.ncrealtors.org/wp-content/uploads/September-2026-Housing-Report.pdf', target: '_blank', rel: 'noopener noreferrer' }, 'State report')
+        React.createElement('div', { className: 'kpi-value' }, '5.98 mo'),
+        React.createElement('div', { className: 'kpi-delta' }, 'October • NC REALTORS®'),
+        React.createElement('a', { href: 'https://www.ncrealtors.org/wp-content/uploads/October-2026-Housing-Report.pdf', target: '_blank', rel: 'noopener noreferrer' }, 'State report')
       ),
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, 'NC Median Listing DOM'),
-        React.createElement('div', { className: 'kpi-value' }, '69 days'),
-        React.createElement('div', { className: 'kpi-delta red' }, '+3 days vs August'),
-        React.createElement('a', { href: 'https://fred.stlouisfed.org/series/MEDDAYONMARNC', target: '_blank', rel: 'noopener noreferrer' }, 'Realtor.com via FRED • September')
+        React.createElement('div', { className: 'kpi-value' }, '71 days'),
+        React.createElement('div', { className: 'kpi-delta red' }, '+2 days vs September'),
+        React.createElement('a', { href: 'https://fred.stlouisfed.org/series/MEDDAYONMARNC', target: '_blank', rel: 'noopener noreferrer' }, 'Realtor.com via FRED • October')
       ),
     ),
 
@@ -1044,7 +1044,7 @@ function App() {
           ),
         ),
         React.createElement('div', { className: 'header-badge' },
-          React.createElement('span', { className: 'q1-badge' }, 'Checked November 1, 2026 • Rate Oct 29 • County period ends Sep'),
+          React.createElement('span', { className: 'q1-badge' }, 'Checked November 8, 2026 • Rate Nov 5 • State Oct • Counties Sep'),
         ),
       ),
     ),
@@ -1075,7 +1075,7 @@ function App() {
     // Footer
     React.createElement('footer', { className: 'footer' },
       React.createElement('div', { className: 'container' },
-        'Verified sources: Redfin county pages, NC REALTORS\u00AE, Realtor.com via FRED, Freddie Mac PMMS \u2022 Checked November 1, 2026'
+        'Verified sources: Redfin county pages, NC REALTORS\u00AE, Realtor.com via FRED, Freddie Mac PMMS \u2022 Checked November 8, 2026'
       )
     )
   );
