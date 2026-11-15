@@ -196,19 +196,19 @@ import {
 
 // ===== MARKET DATA =====
 const MARKETS = [
-  { name: 'Winston-Salem', county: 'Forsyth', regionId: 2040, median: 309.308, yoy: -1.8, dom: 51, sold: 378, rent: 1650, taxRate: 0.5352, ap: 3.0 },
-  { name: 'Greensboro', county: 'Guilford', regionId: 2047, median: 304.568, yoy: -1.8, dom: 40, sold: 479, rent: 1700, taxRate: 0.7305, ap: 4.0 },
-  { name: 'Davie County', county: 'Davie', regionId: 2036, median: 322.421, yoy: -7.9, dom: 61, sold: 63, rent: 1400, taxRate: 0.6486, ap: 4.5 },
-  { name: 'Reidsville', county: 'Rockingham', regionId: 2085, median: 240.050, yoy: 3.7, dom: 56, sold: 97, rent: 1000, taxRate: 0.5801, ap: 2.5 },
-  { name: 'Wilkesboro', county: 'Wilkes', regionId: 2103, median: 258.921, yoy: 4.2, dom: 79, sold: 33, rent: 1025, taxRate: 0.61, ap: 2.5 },
-  { name: 'Boone', county: 'Watauga', regionId: 2101, median: 583.694, yoy: -6.2, dom: 97, sold: 100, rent: 2200, taxRate: 0.42, ap: 3.0 },
-  { name: 'Banner Elk', county: 'Avery', regionId: 2012, median: 476.434, yoy: 36.1, dom: 115, sold: 56, rent: 1750, taxRate: 0.40, ap: 2.5 },
-  { name: 'West Jefferson', county: 'Ashe', regionId: 2011, median: 498.834, yoy: 17.4, dom: 88, sold: 39, rent: 1600, taxRate: 0.44, ap: 2.5 },
-  { name: 'Raleigh', county: 'Wake', regionId: 2098, median: 463.962, yoy: -0.22, dom: 47, sold: 1342, rent: 1640, taxRate: 0.6570, ap: 3.0 },
-  { name: 'Elkin / Surry', county: 'Surry', regionId: 2092, median: 276.880, yoy: 6.5, dom: 73, sold: 53, rent: 950, taxRate: 0.56, ap: 2.5 },
+  { name: 'Winston-Salem', county: 'Forsyth', regionId: 2040, median: 307.964, yoy: 1.0, dom: 58, sold: 401, rent: 1650, taxRate: 0.5352, ap: 3.0 },
+  { name: 'Greensboro', county: 'Guilford', regionId: 2047, median: 318.927, yoy: 4.2, dom: 53, sold: 499, rent: 1700, taxRate: 0.7305, ap: 4.0 },
+  { name: 'Davie County', county: 'Davie', regionId: 2036, median: 308.961, yoy: -6.4, dom: 40, sold: 47, rent: 1400, taxRate: 0.6486, ap: 4.5 },
+  { name: 'Reidsville', county: 'Rockingham', regionId: 2085, median: 226.737, yoy: -6.6, dom: 62, sold: 93, rent: 1000, taxRate: 0.5801, ap: 2.5 },
+  { name: 'Wilkesboro', county: 'Wilkes', regionId: 2103, median: 259.377, yoy: 4.0, dom: 41, sold: 40, rent: 1025, taxRate: 0.61, ap: 2.5 },
+  { name: 'Boone', county: 'Watauga', regionId: 2101, median: 620.413, yoy: 2.8, dom: 73, sold: 76, rent: 2200, taxRate: 0.42, ap: 3.0 },
+  { name: 'Banner Elk', county: 'Avery', regionId: 2012, median: 546.661, yoy: 7.2, dom: 161, sold: 59, rent: 1750, taxRate: 0.40, ap: 2.5 },
+  { name: 'West Jefferson', county: 'Ashe', regionId: 2011, median: 468.424, yoy: -4.4, dom: 101, sold: 48, rent: 1600, taxRate: 0.44, ap: 2.5 },
+  { name: 'Raleigh', county: 'Wake', regionId: 2098, median: 459.454, yoy: -4.1, dom: 50, sold: 1319, rent: 1640, taxRate: 0.6570, ap: 3.0 },
+  { name: 'Elkin / Surry', county: 'Surry', regionId: 2092, median: 289.028, yoy: 18.0, dom: 68, sold: 45, rent: 950, taxRate: 0.56, ap: 2.5 },
 ];
 
-const RATE = 7.18;
+const RATE = 7.11;
 const marketSource = m => `https://www.redfin.com/county/${m.regionId}/NC/${m.county}-County/housing-market`;
 const TABS = [
   { id: 'dashboard', label: '📊 Dashboard' },
@@ -268,10 +268,10 @@ function Dashboard() {
 
   return React.createElement('div', { className: 'container' },
     React.createElement('h2', { className: 'page-title' }, 'Market Dashboard — All 10 Regions'),
-    React.createElement('p', { className: 'page-subtitle' }, 'All ROG Results office markets • Checked November 8, 2026'),
+    React.createElement('p', { className: 'page-subtitle' }, 'All ROG Results office markets • Checked November 15, 2026'),
     React.createElement('div', { className: 'card', style: { marginBottom: 24, fontSize: 14, lineHeight: 1.65 } },
-      React.createElement('strong', null, 'November 8 refresh: mortgage rate November 5; NC state report and listing DOM advanced to October; county reporting periods remain September 2026. '),
-      'Review window: November 1–8. The mortgage benchmark fell 6 basis points to 7.18%. The October NC report shows a $368,990 median, 5.98 months of inventory and 10,421 sales. Statewide median listing time is 71 days, up 2 days from September. These state comparisons are monthly, not seven-day changes. All ten county medians, year-over-year changes, days on market and sales counts were rechecked and are unchanged from the November 1 snapshot. Unchanged published county figures do not mean no market activity occurred this week. ',
+      React.createElement('strong', null, 'November 15 refresh: mortgage rate November 12; all ten county reports advanced to October 2026; statewide reporting remains October. '),
+      'Review window: November 8–15. The mortgage benchmark fell 7 basis points to 7.11%. All ten county medians, year-over-year changes, days on market and sales counts now use the October reports. Differences from the prior September snapshot are report-to-report changes, not price movements or closings during the last seven days. The October NC report remains unchanged at a $368,990 median, 5.98 months of inventory and 10,421 sales. Statewide median listing time remains 71 days, up 2 days from September. No exact seven-day listings, contracts or closings dataset is represented here. ',
       'County prices are Redfin three-month rolling medians, not city-only values or one-week changes. ',
       'September 27 correction: previously hand-blended county values have been replaced with published figures. ',
       'County supply and buyer/seller labels are withheld because the earlier calculations mixed reporting windows. ',
@@ -283,8 +283,8 @@ function Dashboard() {
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, '30-Yr Rate'),
         React.createElement('div', { className: 'kpi-value' }, RATE.toFixed(2) + '%'),
-        React.createElement('div', { className: 'kpi-delta green' }, '−6 bps week over week'),
-        React.createElement('a', { href: 'https://www.freddiemac.com/pmms', target: '_blank', rel: 'noopener noreferrer' }, 'PMMS • November 5')
+        React.createElement('div', { className: 'kpi-delta green' }, '−7 bps week over week'),
+        React.createElement('a', { href: 'https://www.freddiemac.com/pmms', target: '_blank', rel: 'noopener noreferrer' }, 'PMMS • November 12')
       ),
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, 'NC Median'),
@@ -356,7 +356,7 @@ function Dashboard() {
 
       // Source-reported sales counts; do not derive supply from mixed windows.
       React.createElement('div', { className: 'card' },
-        React.createElement('div', { className: 'card-title' }, 'Homes Sold (Source-Reported September Count)'),
+        React.createElement('div', { className: 'card-title' }, 'Homes Sold (Source-Reported October Count)'),
         React.createElement(ResponsiveContainer, { width: '100%', height: 300 },
           React.createElement(BarChart, { data: soldData, layout: 'vertical', margin: { top: 5, right: 30, left: 80, bottom: 5 } },
             React.createElement(CartesianGrid, { strokeDasharray: '3 3', stroke: '#f0f0f0' }),
@@ -390,7 +390,7 @@ function Dashboard() {
                 React.createElement('td', { className: m.yoy >= 0 ? 'green' : 'red' }, fmtPct(m.yoy)),
                 React.createElement('td', null, m.dom + ' days'),
                 React.createElement('td', null, m.sold.toLocaleString()),
-                React.createElement('td', null, React.createElement('a', { href: marketSource(m), target: '_blank', rel: 'noopener noreferrer' }, 'Redfin • Sep')),
+                React.createElement('td', null, React.createElement('a', { href: marketSource(m), target: '_blank', rel: 'noopener noreferrer' }, 'Redfin • Oct')),
               )
             )
           )
@@ -1044,7 +1044,7 @@ function App() {
           ),
         ),
         React.createElement('div', { className: 'header-badge' },
-          React.createElement('span', { className: 'q1-badge' }, 'Checked November 8, 2026 • Rate Nov 5 • State Oct • Counties Sep'),
+          React.createElement('span', { className: 'q1-badge' }, 'Checked November 15, 2026 • Rate Nov 12 • State Oct • Counties Oct'),
         ),
       ),
     ),
@@ -1075,7 +1075,7 @@ function App() {
     // Footer
     React.createElement('footer', { className: 'footer' },
       React.createElement('div', { className: 'container' },
-        'Verified sources: Redfin county pages, NC REALTORS\u00AE, Realtor.com via FRED, Freddie Mac PMMS \u2022 Checked November 8, 2026'
+        'Verified sources: Redfin county pages, NC REALTORS\u00AE, Realtor.com via FRED, Freddie Mac PMMS \u2022 Checked November 15, 2026'
       )
     )
   );

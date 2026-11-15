@@ -1,4 +1,37 @@
-# Real Estate Math: November 8, 2026 verification
+# Real Estate Math: November 15, 2026 verification
+
+## November 15 weekly refresh
+
+Review interval: November 8–15, 2026. [Freddie Mac PMMS](https://www.freddiemac.com/pmms) 30-year benchmark is 7.11%, dated November 12, versus 7.18% the prior week, down 7 basis points. RATE now 7.11. A hypothetical $300,000, 30-year loan yields $2,018.12 monthly principal and interest versus $2,032.30; the difference computed before rounding is $14.19. Taxes, insurance, PMI, HOA and fees excluded; not an individual quote.
+
+Finance receipt: `macro_snapshot_mortgage__United_States_d79677.csv`, series `USA3YMR`, `latest_value_date=2026-11-12`, `latest_value=7.11`, `previous_value=7.18`. Metadata: `web/direct-files/c6a29c75e4aa78b1e5cb953c7864bf82/f5bca243-f850-4fda-b498-a8fac4cca458/csv/882494ba_macro_snapshot_mortgage__United_States_d79677.csv.metadata.json`.
+
+Fresh checks of the [NC REALTORS report index](https://www.ncrealtors.org/resources/news-data/market-data/) and [October report](https://www.ncrealtors.org/wp-content/uploads/October-2026-Housing-Report.pdf) show October remains latest: median $368,990 (-0.4% YoY), sales 10,421 (-19% YoY), inventory 5.98 months, listings 70,734. These figures have not changed from November 8. [Realtor.com via FRED](https://fred.stlouisfed.org/series/MEDDAYONMARNC) remains October 71 listing days versus September 69, updated November 5, next release December 3. Listing DOM is not county sold-home DOM.
+
+All ten county reports advanced from September to October. Eight county pages were freshly fetched; Guilford and Davie were read in the rendered browser after fetch failures. Exact all-home-type headline medians, price YoY, DOM and sold counts were observed. Prices are three-month rolling medians ending October. Sales counts are October counts stated in the page narratives. DOM is the source-reported headline measure; source narrative says average while cards say median, so this tool retains the neutral label "Days on Market." No exact seven-day listing, pending or closing feed was retrieved.
+
+The deltas below compare newly published October figures with the September snapshot saved November 8. They are report-to-report changes, not changes occurring during November 8–15. Prior snapshots are preserved below; no silently reconstructed history is used.
+
+| County / source | October median | Price YoY | DOM | October sold | Median delta | DOM delta | Sold delta |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| [Forsyth](https://www.redfin.com/county/2040/NC/Forsyth-County/housing-market) | $307,964 | +1.0% | 58 | 401 | -$1,344 (-0.43%) | +7 | +23 |
+| [Guilford](https://www.redfin.com/county/2047/NC/Guilford-County/housing-market) | $318,927 | +4.2% | 53 | 499 | +$14,359 (+4.71%) | +13 | +20 |
+| [Davie](https://www.redfin.com/county/2036/NC/Davie-County/housing-market) | $308,961 | -6.4% | 40 | 47 | -$13,460 (-4.17%) | -21 | -16 |
+| [Rockingham](https://www.redfin.com/county/2085/NC/Rockingham-County/housing-market) | $226,737 | -6.6% | 62 | 93 | -$13,313 (-5.55%) | +6 | -4 |
+| [Wilkes](https://www.redfin.com/county/2103/NC/Wilkes-County/housing-market) | $259,377 | +4.0% | 41 | 40 | +$456 (+0.18%) | -38 | +7 |
+| [Watauga](https://www.redfin.com/county/2101/NC/Watauga-County/housing-market) | $620,413 | +2.8% | 73 | 76 | +$36,719 (+6.29%) | -24 | -24 |
+| [Avery](https://www.redfin.com/county/2012/NC/Avery-County/housing-market) | $546,661 | +7.2% | 161 | 59 | +$70,227 (+14.74%) | +46 | +3 |
+| [Ashe](https://www.redfin.com/county/2011/NC/Ashe-County/housing-market) | $468,424 | -4.4% | 101 | 48 | -$30,410 (-6.10%) | +13 | +9 |
+| [Wake](https://www.redfin.com/county/2098/NC/Wake-County/housing-market) | $459,454 | -4.1% | 50 | 1,319 | -$4,508 (-0.97%) | +3 | -23 |
+| [Surry](https://www.redfin.com/county/2092/NC/Surry-County/housing-market) | $289,028 | +18.0% | 68 | 45 | +$12,148 (+4.39%) | -5 | -8 |
+
+Scope: update county array, RATE, header/dashboard/footer check dates, mortgage date, sales chart month, Redfin source labels and refresh note. Preserve layout, four calculators, rent/tax/appreciation assumptions and independent scenario defaults. County supply and buyer/seller labels remain withheld because matched-period data has not been established.
+
+Pre-release [public site](https://rog-real-estate-math.netlify.app/) shows November 8, 7.18%, state October and counties September. Netlify is listed connected but no callable operations appeared; discovery returned no candidates. The downloadable HTML and private preview are the delivered update, not proof of public Netlify publication.
+
+Local QA passed: all 50 county identity/metric cells exactly match the verified October dataset, ten source links and four charts render, all four calculator tabs respond, Davie selectors populate $308,961, slider/rent/price edits work, negative appreciation and zero price remain finite, script copy feedback works, client sharing copies a mode=client URL, client scripts hide, and a fresh agent load restores controls. All five views checked at 1440px and 375px without page overflow; no runtime page errors. Mortgage source link opens Freddie Mac. Existing design and source-link styling are preserved.
+
+## Prior weekly records
 
 ## November 8 weekly refresh
 
