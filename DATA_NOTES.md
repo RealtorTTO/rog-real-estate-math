@@ -1,4 +1,12 @@
-# Real Estate Math: November 15, 2026 verification
+# Real Estate Math: November 22, 2026 verification
+
+## November 22 weekly refresh
+
+The [Freddie Mac PMMS](https://www.freddiemac.com/pmms) weekly 30-year fixed benchmark rose from 7.11% on November 12 to 7.28% on November 19 (+17 basis points). Source receipt: finance_macro_snapshot, USA3YMR, `web/direct-files/840181a869886c19f0e085f35b74213a/711fab49-26fe-476c-a277-11096797bc12/csv/882494ba_macro_snapshot_mortgage__United_States_d79677.csv.metadata.json`. The $34.52 monthly increase is the difference in principal and interest on a $300,000 loan amortized over 360 months; not a quote or an all-in payment.
+
+All ten Redfin county pages linked in the November 15 table below still show the identical October period, median, year-over-year price change, days on market and sales count. Guilford, Davie and Wake were checked by direct fetch; the other seven by rendered county page. Nothing in these figures measures seven-day MLS activity.
+
+October remains latest on the [NC REALTORS® report index](https://www.ncrealtors.org/resources/news-data/market-data/). The [October report](https://www.ncrealtors.org/wp-content/uploads/October-2026-Housing-Report.pdf) shows $368,990 median, -0.4% YoY; 10,421 sales, -19% YoY; 5.98 months of inventory; 70,734 active and pending listings. [Realtor.com via FRED](https://fred.stlouisfed.org/series/MEDDAYONMARNC) remains at 71 median listing days in October. Measurement periods, county series, rent, tax and appreciation assumptions, independent scenario defaults and the design remain unchanged.
 
 ## November 15 weekly refresh
 

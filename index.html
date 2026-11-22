@@ -208,7 +208,7 @@ const MARKETS = [
   { name: 'Elkin / Surry', county: 'Surry', regionId: 2092, median: 289.028, yoy: 18.0, dom: 68, sold: 45, rent: 950, taxRate: 0.56, ap: 2.5 },
 ];
 
-const RATE = 7.11;
+const RATE = 7.28;
 const marketSource = m => `https://www.redfin.com/county/${m.regionId}/NC/${m.county}-County/housing-market`;
 const TABS = [
   { id: 'dashboard', label: '📊 Dashboard' },
@@ -268,10 +268,10 @@ function Dashboard() {
 
   return React.createElement('div', { className: 'container' },
     React.createElement('h2', { className: 'page-title' }, 'Market Dashboard — All 10 Regions'),
-    React.createElement('p', { className: 'page-subtitle' }, 'All ROG Results office markets • Checked November 15, 2026'),
+    React.createElement('p', { className: 'page-subtitle' }, 'All ROG Results office markets • Checked November 22, 2026'),
     React.createElement('div', { className: 'card', style: { marginBottom: 24, fontSize: 14, lineHeight: 1.65 } },
-      React.createElement('strong', null, 'November 15 refresh: mortgage rate November 12; all ten county reports advanced to October 2026; statewide reporting remains October. '),
-      'Review window: November 8–15. The mortgage benchmark fell 7 basis points to 7.11%. All ten county medians, year-over-year changes, days on market and sales counts now use the October reports. Differences from the prior September snapshot are report-to-report changes, not price movements or closings during the last seven days. The October NC report remains unchanged at a $368,990 median, 5.98 months of inventory and 10,421 sales. Statewide median listing time remains 71 days, up 2 days from September. No exact seven-day listings, contracts or closings dataset is represented here. ',
+      React.createElement('strong', null, 'November 22 update: the 30-year mortgage benchmark rose. October is still the latest housing report. '),
+      'Since our November 15 update, the national rate rose from 7.11% to 7.28% on November 19. On a $300,000 fixed-rate loan over 30 years, that adds $34.52 per month in principal and interest alone. The statewide figures and all ten county snapshots match last week’s edition. They describe October, not new listings, contracts or closings during November 15–22. ',
       'County prices are Redfin three-month rolling medians, not city-only values or one-week changes. ',
       'September 27 correction: previously hand-blended county values have been replaced with published figures. ',
       'County supply and buyer/seller labels are withheld because the earlier calculations mixed reporting windows. ',
@@ -283,8 +283,8 @@ function Dashboard() {
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, '30-Yr Rate'),
         React.createElement('div', { className: 'kpi-value' }, RATE.toFixed(2) + '%'),
-        React.createElement('div', { className: 'kpi-delta green' }, '−7 bps week over week'),
-        React.createElement('a', { href: 'https://www.freddiemac.com/pmms', target: '_blank', rel: 'noopener noreferrer' }, 'PMMS • November 12')
+        React.createElement('div', { className: 'kpi-delta red' }, '+17 bps week over week'),
+        React.createElement('a', { href: 'https://www.freddiemac.com/pmms', target: '_blank', rel: 'noopener noreferrer' }, 'PMMS • November 19')
       ),
       React.createElement('div', { className: 'kpi-card' },
         React.createElement('div', { className: 'kpi-label' }, 'NC Median'),
@@ -1044,7 +1044,7 @@ function App() {
           ),
         ),
         React.createElement('div', { className: 'header-badge' },
-          React.createElement('span', { className: 'q1-badge' }, 'Checked November 15, 2026 • Rate Nov 12 • State Oct • Counties Oct'),
+          React.createElement('span', { className: 'q1-badge' }, 'Checked November 22, 2026 • Rate Nov 19 • State Oct • Counties Oct'),
         ),
       ),
     ),
@@ -1075,7 +1075,7 @@ function App() {
     // Footer
     React.createElement('footer', { className: 'footer' },
       React.createElement('div', { className: 'container' },
-        'Verified sources: Redfin county pages, NC REALTORS\u00AE, Realtor.com via FRED, Freddie Mac PMMS \u2022 Checked November 15, 2026'
+        'Verified sources: Redfin county pages, NC REALTORS\u00AE, Realtor.com via FRED, Freddie Mac PMMS \u2022 Checked November 22, 2026'
       )
     )
   );
